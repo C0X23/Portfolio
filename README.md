@@ -214,5 +214,3 @@ Ce projet est sous licence MIT.
 Remplacez les images dans le dossier `public/images/`. Veillez à conserver les noms de fichiers ou à mettre à jour les chemins dans les composants (`src/components/Projects.tsx` pour les projets).
 
 ---
-
-Généré par GitHub Copilot sur VS Code.

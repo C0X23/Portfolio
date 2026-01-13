@@ -3,6 +3,14 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+const techStack = [
+  { name: "Next.js", url: "https://nextjs.org" },
+  { name: "TypeScript", url: "https://typescriptlang.org" },
+  { name: "Tailwind CSS", url: "https://tailwindcss.com" },
+  { name: "Framer Motion", url: "https://framer.com/motion" },
+  { name: "next-intl", url: "https://next-intl-docs.vercel.app" },
+];
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const t = useTranslations("Footer");
@@ -10,7 +18,27 @@ export function Footer() {
   return (
     <footer className="bg-stone-100 dark:bg-stone-900 border-t border-stone-200 dark:border-stone-800 py-12 md:py-16 transition-colors duration-300">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+        {/* Tech Stack */}
+        <div className="mb-10 text-center">
+          <p className="text-xs uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-4">
+            {t("built_with")}
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {techStack.map((tech) => (
+              <a
+                key={tech.name}
+                href={tech.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 text-xs font-medium text-stone-600 dark:text-stone-400 bg-stone-200/50 dark:bg-stone-800/50 rounded-full hover:bg-stone-300/50 dark:hover:bg-stone-700/50 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
+              >
+                {tech.name}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8 pt-8 border-t border-stone-200 dark:border-stone-800">
           
           <div className="text-center md:text-left">
             <h3 className="text-2xl font-bold tracking-tighter text-stone-900 dark:text-stone-50 mb-2">CORENTIN</h3>

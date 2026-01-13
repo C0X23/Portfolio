@@ -78,7 +78,8 @@
   },
   "Footer": {
     "role": "Full Stack Software Engineer.",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "built_with": "Built with"
   },
   "CommandMenu": {
     "search": "Type a command or search...",

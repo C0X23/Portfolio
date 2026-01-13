@@ -78,7 +78,8 @@
   },
   "Footer": {
     "role": "Ingénieur Logiciel Full Stack.",
-    "rights": "Tous droits réservés."
+    "rights": "Tous droits réservés.",
+    "built_with": "Créé avec"
   },
   "CommandMenu": {
     "search": "Rechercher une commande...",
