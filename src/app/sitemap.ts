@@ -1,8 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // TODO: Remplacez par votre domaine réel lors du déploiement
-  const baseUrl = "https://portfolio-corentin.vercel.app";
+  const baseUrl = "https://cmegret.dev";
 
   return [
     {

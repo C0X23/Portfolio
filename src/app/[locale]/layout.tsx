@@ -27,10 +27,10 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
     openGraph: {
       type: "website",
       locale: locale === 'fr' ? 'fr_FR' : 'en_US',
-      url: "https://votre-domaine.com",
+      url: "https://cmegret.dev",
       title: t('title'),
       description: t('description'),
-      siteName: "Portfolio de Corentin",
+      siteName: "Corentin Megret - Portfolio",
     },
     twitter: {
       card: "summary_large_image",

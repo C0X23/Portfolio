@@ -6,6 +6,10 @@
 </p>
 
 <p align="center">
+  <a href="https://cmegret.dev" target="_blank"><strong>🌐 cmegret.dev</strong></a>
+</p>
+
+<p align="center">
   <a href="#-aperçu">Aperçu</a> •
   <a href="#-stack-technique">Stack</a> •
   <a href="#-fonctionnalités">Fonctionnalités</a> •
