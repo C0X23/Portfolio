@@ -107,3 +107,22 @@ body {
   user-select: none;
 }
 
+/* Infinite Scroll Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+.animate-scroll:hover,
+.animate-scroll.\[animation-play-state\:paused\] {
+  animation-play-state: paused;
+}
+

@@ -1,9 +1,8 @@
 "use client";
 
-import { motion, useMotionValue, useAnimationFrame, animate } from "framer-motion";
-import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 
 const projectsFallback = [
@@ -54,83 +53,7 @@ export function Projects() {
   const duplicatedProjects = [...projects, ...projects, ...projects];
 
   const [isPaused, setIsPaused] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const [carouselWidth, setCarouselWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  
-  // Timer référence pour reprendre le scroll
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    if (carouselRef.current) {
-      // La largeur d'un set de projets (1/3 du total car triplé)
-      // On soustrait un gap à la fin pour la précision si besoin, 
-      // mais ici diviser par 3 suffit pour le reset point
-      const measure = () => {
-         if (carouselRef.current) {
-            setCarouselWidth(carouselRef.current.scrollWidth / 3);
-         }
-      };
-      
-      measure();
-      window.addEventListener('resize', measure);
-      return () => window.removeEventListener('resize', measure);
-    }
-  }, []);
-
-  const pauseInteraction = () => {
-    setIsPaused(true);
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    
-    timeoutRef.current = setTimeout(() => {
-      setIsPaused(false);
-    }, 2000); // Reprend après 2 secondes
-  };
-
-  const handleDragStart = () => {
-    setIsDragging(true);
-    pauseInteraction();
-  };
-
-  const handleDragEnd = () => {
-    setIsDragging(false);
-    pauseInteraction();
-  };
-
-  useAnimationFrame((time, delta) => {
-    if (!isPaused && !isDragging && carouselWidth > 0) {
-      // Vitesse : px par seconde. Ajuster -50 pour plus rapide ou plus lent
-      const moveBy = -40 * (delta / 1000); 
-      let newX = x.get() + moveBy;
-
-      // Gestion de la boucle infinie
-      // Si on est allé trop à gauche (plus loin que la largeur d'un set)
-      if (newX <= -carouselWidth) {
-        newX += carouselWidth;
-      }
-      // Si on est allé trop à droite (positif)
-      else if (newX > 0) {
-        newX -= carouselWidth;
-      }
-
-      x.set(newX);
-    }
-  });
-
-  const scrollManual = (direction: "left" | "right") => {
-    pauseInteraction();
-    const currentX = x.get();
-    const cardWidth = 430; // 380px (carte) + 32px (gap) + marge approx
-    const targetX = direction === "left" ? currentX + cardWidth : currentX - cardWidth;
-    
-    animate(x, targetX, {
-      type: "spring",
-      stiffness: 300,
-      damping: 30
-    });
-  };
 
   return (
     <section id="projects" className="py-24 bg-white dark:bg-stone-900 relative overflow-hidden transition-colors duration-300">
@@ -150,42 +73,23 @@ export function Projects() {
             </p>
           </div>
           
-          <div className="hidden md:flex gap-4">
-            <button
-              onClick={() => scrollManual("left")}
-              className="p-3 rounded-full border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors z-10"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-              onClick={() => scrollManual("right")}
-              className="p-3 rounded-full border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors z-10"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-          </div>
+          {/* Navigation buttons hidden - using CSS infinite scroll */}
         </motion.div>
 
-        {/* Carousel Container */}
+        {/* Carousel Container - CSS Infinite Scroll */}
         <div 
             ref={containerRef}
-            className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing"
+            className="relative w-full overflow-hidden"
             onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => { if (!isDragging) setIsPaused(false); }}
+            onMouseLeave={() => setIsPaused(false)}
         >
-          <motion.div 
-            ref={carouselRef}
-            style={{ x }}
-            drag="x"
-            dragConstraints={{ left: -10000, right: 10000 }} // Pas de contrainte réelle
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-            className="flex gap-8 pb-8 w-max"
+          <div 
+            className={`flex gap-8 pb-8 w-max animate-scroll ${isPaused ? '[animation-play-state:paused]' : ''}`}
           >
             {duplicatedProjects.map((project, index) => (
               <ProjectCard key={`${project.title}-${index}`} project={project} t={t} />
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
@@ -248,13 +152,14 @@ function ProjectCard({ project, t }: { project: Project; t: ReturnType<typeof us
           {project.description}
         </p>
 
+        {/* Boutons masqués pour le moment
         <div className="flex items-center gap-4">
           <a 
             href={project.link} 
             target="_blank" 
             rel="noopener noreferrer" 
             className="flex items-center text-sm font-medium text-stone-900 dark:text-stone-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors z-20 cursor-pointer"
-            onPointerDown={(e) => e.stopPropagation()} // Empêcher le drag quand on clique sur le lien
+            onPointerDown={(e) => e.stopPropagation()}
           >
             <ExternalLink className="w-4 h-4 mr-2" /> {t("demo")}
           </a>
@@ -263,11 +168,12 @@ function ProjectCard({ project, t }: { project: Project; t: ReturnType<typeof us
             target="_blank" 
             rel="noopener noreferrer" 
             className="flex items-center text-sm font-medium text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors z-20 cursor-pointer"
-            onPointerDown={(e) => e.stopPropagation()} // Empêcher le drag quand on clique sur le lien
+            onPointerDown={(e) => e.stopPropagation()}
           >
             <Github className="w-4 h-4 mr-2" /> {t("code")}
           </a>
         </div>
+        */}
       </div>
     </motion.div>
   );
