@@ -22,6 +22,8 @@
   "Timeline": {
     "title": "Mon Parcours",
     "subtitle": "De la formation intensive à la pratique professionnelle.",
+    "formation_title": "Formation",
+    "experience_title": "Expérience",
     "bts_title": "BTS SNIR",
     "bts_desc": "Brevet de Technicien Supérieur Systèmes Numériques - Option Informatique et Réseaux. Architecture réseau, programmation système et embarquée.",
     "piscine_title": "Piscine 42",

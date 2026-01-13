@@ -22,6 +22,8 @@
   "Timeline": {
     "title": "My Journey",
     "subtitle": "From intensive training to professional practice.",
+    "formation_title": "Education",
+    "experience_title": "Experience",
     "bts_title": "BTS SNIR",
     "bts_desc": "Higher Technician Certificate in Digital Systems - Computing and Networks Option. Network architecture, system, and embedded programming.",
     "piscine_title": "42 Piscine",

@@ -4,36 +4,47 @@ import { motion } from "framer-motion";
 import { GraduationCap, Briefcase, Code } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+interface TimelineItemType {
+  year: string;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  tech: string[];
+}
+
 export function Timeline() {
   const t = useTranslations("Timeline");
 
-  const timelineData = [
+  const formation: TimelineItemType[] = [
     { 
       year: "2021 - 2023",
       title: t("bts_title"),
       description: t("bts_desc"),
-      icon: <GraduationCap className="w-5 h-5 text-stone-50" />,
+      icon: <GraduationCap className="w-5 h-5" />,
       tech: ["C++", "HTML", "CSS", "JavaScript", "Réseaux", "Linux"]
     },
     {
       year: "2023",
       title: t("piscine_title"),
       description: t("piscine_desc"),
-      icon: <GraduationCap className="w-5 h-5 text-stone-50" />,
+      icon: <GraduationCap className="w-5 h-5" />,
       tech: ["C", "Shell", "Git"]
     },
     {
       year: "2023 - 2025",
       title: t("school_title"),
       description: t("school_desc"),
-      icon: <Code className="w-5 h-5 text-stone-50" />,
+      icon: <Code className="w-5 h-5" />,
       tech: ["C", "C++", "Algorithmie", "Unix"]
     },
+  ];
+
+  const experience: TimelineItemType[] = [
     {
       year: t("arcom_year"),
       title: t("arcom_title"),
       description: t("arcom_desc"),
-      icon: <Briefcase className="w-5 h-5 text-stone-50" />,
+      icon: <Briefcase className="w-5 h-5" />,
       tech: ["Python", "Django", "SQL", "Docker"]
     }
   ];
@@ -55,14 +66,50 @@ export function Timeline() {
           </p>
         </motion.div>
 
-        <div className="overflow-x-auto pb-8 -mx-4 px-4 scrollbar-hide">
-          <div className="min-w-[900px] lg:w-full relative py-8 px-4 mt-8">
-            {/* Ligne horizontale */}
-            <div className="absolute top-[10rem] left-0 right-0 h-0.5 bg-stone-200 dark:bg-stone-800" />
+        {/* Deux colonnes */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+          {/* Colonne Formation */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-3 mb-8"
+            >
+              <div className="w-10 h-10 rounded-full bg-stone-900 dark:bg-stone-100 flex items-center justify-center">
+                <GraduationCap className="w-5 h-5 text-stone-50 dark:text-stone-900" />
+              </div>
+              <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100">
+                {t("formation_title")}
+              </h3>
+            </motion.div>
+            
+            <div className="space-y-4">
+              {formation.map((item, index) => (
+                <TimelineCard key={index} item={item} index={index} />
+              ))}
+            </div>
+          </div>
 
-            <div className="flex justify-between gap-8">
-              {timelineData.map((item, index) => (
-                <TimelineItem key={index} item={item} index={index} />
+          {/* Colonne Expérience */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-3 mb-8"
+            >
+              <div className="w-10 h-10 rounded-full bg-stone-900 dark:bg-stone-100 flex items-center justify-center">
+                <Briefcase className="w-5 h-5 text-stone-50 dark:text-stone-900" />
+              </div>
+              <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100">
+                {t("experience_title")}
+              </h3>
+            </motion.div>
+            
+            <div className="space-y-4">
+              {experience.map((item, index) => (
+                <TimelineCard key={index} item={item} index={index} />
               ))}
             </div>
           </div>
@@ -72,49 +119,44 @@ export function Timeline() {
   );
 }
 
-interface TimelineItemType {
-  year: string;
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-  tech: string[];
-}
-
-function TimelineItem({ item, index }: { item: TimelineItemType, index: number }) {
+function TimelineCard({ item, index }: { item: TimelineItemType; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      className="flex-1 relative flex flex-col items-center max-w-xs"
+      className="group relative"
     >
-      {/* Année et trait vertical */}
-      <div className="flex flex-col items-center mb-0 z-10">
-        <span className="px-3 py-1 text-sm font-bold text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full mb-2 shadow-sm transition-colors duration-300">
-          {item.year}
-        </span>
-        <div className="w-0.5 h-12 bg-stone-300 dark:bg-stone-700 transition-colors duration-300" />
-      </div>
+      <div className="bg-white dark:bg-stone-900 p-6 rounded-2xl border border-stone-200 dark:border-stone-800 shadow-sm hover:shadow-lg hover:border-stone-300 dark:hover:border-stone-700 transition-all duration-300">
+        {/* En-tête avec année et icône */}
+        <div className="flex items-start justify-between mb-3">
+          <span className="px-3 py-1 text-xs font-semibold text-stone-600 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 rounded-full">
+            {item.year}
+          </span>
+          <div className="w-8 h-8 rounded-full bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-stone-600 dark:text-stone-400 group-hover:bg-stone-900 group-hover:text-stone-50 dark:group-hover:bg-stone-100 dark:group-hover:text-stone-900 transition-colors duration-300">
+            {item.icon}
+          </div>
+        </div>
 
-      {/* Icone */}
-      <div className="relative z-10 w-20 h-20 rounded-full bg-stone-900 dark:bg-stone-500 border-[6px] border-stone-50 dark:border-stone-950 shadow-xl flex items-center justify-center mb-8 shrink-0 transition-all duration-300 hover:scale-110">
-        {item.icon}
-      </div>
+        {/* Titre */}
+        <h4 className="text-lg font-bold text-stone-900 dark:text-stone-100 mb-2 transition-colors duration-300">
+          {item.title}
+        </h4>
 
-      {/* Carte */}
-      <div className="w-full bg-white dark:bg-stone-900 p-6 rounded-2xl border border-stone-200 dark:border-stone-800 shadow-sm hover:shadow-md transition-all duration-300 h-full flex flex-col relative group">
-        {/* Petit triangle pointant vers le haut */}
-        <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white dark:bg-stone-900 border-t border-l border-stone-200 dark:border-stone-800 rotate-45 transition-colors duration-300" />
-
-        <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-2 transition-colors duration-300">{item.title}</h3>
-        <p className="text-stone-600 dark:text-stone-400 mb-4 text-sm leading-relaxed flex-grow transition-colors duration-300">
+        {/* Description */}
+        <p className="text-stone-600 dark:text-stone-400 text-sm leading-relaxed mb-4">
           {item.description}
         </p>
-        <div className="flex flex-wrap gap-2 mt-auto">
-          {item.tech.map((t: string) => (
-            <span key={t} className="text-xs font-medium text-stone-500 dark:text-stone-500">
-              #{t}
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2">
+          {item.tech.map((tech: string) => (
+            <span
+              key={tech}
+              className="text-xs font-medium text-stone-500 dark:text-stone-500 hover:text-stone-700 dark:hover:text-stone-300 transition-colors"
+            >
+              #{tech}
             </span>
           ))}
         </div>
