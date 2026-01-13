@@ -23,7 +23,16 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
     title: t('title'),
     description: t('description'),
     keywords: ["Développeur Web", "Full Stack", "React", "Next.js", "TypeScript", "Système", "Cloud"],
-    authors: [{ name: "Corentin" }],
+    authors: [{ name: "Corentin Megret" }],
+    icons: {
+      icon: [
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      ],
+      apple: "/apple-touch-icon.png",
+    },
+    manifest: "/site.webmanifest",
     openGraph: {
       type: "website",
       locale: locale === 'fr' ? 'fr_FR' : 'en_US',
