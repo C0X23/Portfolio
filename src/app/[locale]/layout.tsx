@@ -45,6 +45,7 @@ import { SmoothScroll } from "@/components/smooth-scroll";
 import { CommandMenu } from "@/components/command-menu";
 import { MouseFollower } from "@/components/mouse-follower";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 export default async function RootLayout({
   children,
@@ -81,6 +82,7 @@ export default async function RootLayout({
             <CommandMenu />
             {children}
             <SpeedInsights />
+            <Analytics />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
