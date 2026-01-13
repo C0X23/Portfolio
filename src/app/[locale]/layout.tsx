@@ -24,6 +24,9 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
     description: t('description'),
     keywords: ["Développeur Web", "Full Stack", "React", "Next.js", "TypeScript", "Système", "Cloud"],
     authors: [{ name: "Corentin Megret" }],
+    appleWebApp: {
+      title: "Corentin M.",
+    },
     icons: {
       icon: [
         { url: "/favicon.ico", sizes: "any" },
