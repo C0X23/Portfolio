@@ -44,6 +44,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { CommandMenu } from "@/components/command-menu";
 import { MouseFollower } from "@/components/mouse-follower";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export default async function RootLayout({
   children,
@@ -71,14 +72,15 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
-            enableSystem
+            defaultTheme="light"
+            enableSystem={false}
             disableTransitionOnChange
           >
             <SmoothScroll />
             <MouseFollower />
             <CommandMenu />
             {children}
+            <SpeedInsights />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

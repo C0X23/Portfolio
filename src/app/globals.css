@@ -90,39 +90,40 @@ body {
 	color: #0c0a09;
 	/* stone-950 */
 }
+
 /* CMDK Styles */
 [cmdk-overlay] {
-  background-color: rgba(0, 0, 0, 0.4);
-  position: fixed;
-  inset: 0;
-  z-index: 9998;
-  backdrop-filter: blur(4px);
+	background-color: rgba(0, 0, 0, 0.4);
+	position: fixed;
+	inset: 0;
+	z-index: 9998;
+	backdrop-filter: blur(4px);
 }
 
 [cmdk-dialog] {
-  z-index: 9999;
+	z-index: 9999;
 }
 
 [cmdk-group-heading] {
-  user-select: none;
+	user-select: none;
 }
 
 /* Infinite Scroll Animation */
 @keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-33.333%);
-  }
+	0% {
+		transform: translateX(0);
+	}
+
+	100% {
+		transform: translateX(-33.333%);
+	}
 }
 
 .animate-scroll {
-  animation: scroll 30s linear infinite;
+	animation: scroll 30s linear infinite;
 }
 
 .animate-scroll:hover,
 .animate-scroll.\[animation-play-state\:paused\] {
-  animation-play-state: paused;
+	animation-play-state: paused;
 }
-
