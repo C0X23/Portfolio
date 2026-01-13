@@ -1,0 +1,99 @@
+{
+  "Hero": {
+    "subtitle": "CORENTIN M.",
+    "title": "Full Stack <br /> Developer",
+    "description": "Specialized in web and system development. I design high-performance and robust solutions, from kernel to cloud.",
+    "cta": "View my projects"
+  },
+  "Navigation": {
+    "about": "About",
+    "timeline": "Timeline",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact me"
+  },
+  "About": {
+    "title": "About Me",
+    "description1": "Full Stack Software Engineer and former student at 42 School, I design high-performance systems and complete web solutions.",
+    "description2": "My expertise ranges from low-level system programming (C, C++, Unix, Bash) to modern web architectures (Python, Django, Docker). I place a high importance on code quality, performance, and deployment automation.",
+    "yearsEx": "Years Exp.",
+    "repos": "GitHub Repos"
+  },
+  "Timeline": {
+    "title": "My Journey",
+    "subtitle": "From intensive training to professional practice.",
+    "bts_title": "BTS SNIR",
+    "bts_desc": "Higher Technician Certificate in Digital Systems - Computing and Networks Option. Network architecture, system, and embedded programming.",
+    "piscine_title": "42 Piscine",
+    "piscine_desc": "Intensive 4-week selection. Introduction to C, Shell, and fundamental programming concepts.",
+    "school_title": "42 School - Common Core",
+    "school_desc": "Intensive learning of C/C++ and system architecture. Realization of complex projects: Minishell (Bash), Cub3D (Graphics engine), Philosophers (Concurrency).",
+    "arcom_title": "Full Stack Developer - Arcom",
+    "arcom_desc": "Development and maintenance of a complete After-Sales Service management solution. Optimization of logistic flows, process automation, and creation of intuitive administrative interfaces.",
+    "arcom_year": "2024 - Present"
+  },
+  "Projects": {
+    "title": "Recent Projects",
+    "subtitle": "A selection of my most ambitious works, combining technique and aesthetics.",
+    "arcom_desc": "Development and maintenance for 2 years of a complete After-Sales Service management solution. Optimization of logistic flows and administrative interface.",
+    "minishell_desc": "Faithful reimplementation of a Unix Shell (Bash). Advanced process management, redirections, pipes, and signals.",
+    "cub3d_desc": "3D rendering engine style Wolfenstein 3D created from scratch in C. Physics management, textures, and raycasting.",
+    "philosophers_desc": "Simulation of the dining philosophers problem. Complex management of concurrency, threads, mutexes, and deadlock prevention.",
+    "demo": "Demo",
+    "code": "Code"
+  },
+  "Skills": {
+    "title": "Technical Skills",
+    "cpp": "C / C++ / Algorithms",
+    "python": "Python / Django",
+    "linux": "Linux / Unix / Bash",
+    "sql": "SQL / Databases",
+    "git": "Git / GitHub / CI/CD",
+    "docker": "Docker / DevOps",
+    "web": "HTML / CSS / JavaScript"
+  },
+  "Contact": {
+    "title": "Let's Work Together",
+    "description": "Have a project in mind? I am always open to new collaboration opportunities.",
+    "location": "Switzerland / France",
+    "success_title": "Message sent!",
+    "success_msg": "Thank you for contacting me. I will get back to you as soon as possible.",
+    "sending": "Sending...",
+    "send": "Send Message",
+    "placeholders": {
+        "lastName": "Last Name",
+        "firstName": "First Name",
+        "email": "Email",
+        "subject": "Subject",
+        "message": "Your message..."
+    },
+    "errors": {
+        "firstName_min": "First name must be at least 2 characters",
+        "lastName_min": "Last name must be at least 2 characters",
+        "email_invalid": "Invalid email address",
+        "subject_min": "Subject must be at least 5 characters",
+        "message_min": "Message must be at least 10 characters",
+        "generic": "Please correct the errors in the form."
+    }
+  },
+  "Footer": {
+    "role": "Full Stack Software Engineer.",
+    "rights": "All rights reserved."
+  },
+  "CommandMenu": {
+    "search": "Type a command or search...",
+    "navigation": "Navigation",
+    "actions": "Actions",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "lang": "Language",
+    "fr": "French",
+    "en": "English"
+  },
+  "Metadata": {
+    "title": "Corentin | Full Stack Developer",
+    "description": "Specialized in web and system development."
+  }
+}

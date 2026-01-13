@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	/* Custom ease curves for framer motion feel in CSS transitions */
+	--ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@layer utilities {
+	.text-balance {
+		text-wrap: balance;
+	}
+}
+
+:root {
+	--background: #fafaf9;
+	/* stone-50 */
+	--foreground: #0c0a09;
+	/* stone-950 */
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #fafaf9;
+		/* Force light theme */
+		--foreground: #0c0a09;
+	}
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	color: var(--foreground);
+	background: var(--background);
+	font-family: var(--font-geist-sans), Arial, sans-serif;
+	overflow-x: hidden;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar - Light Theme */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: #fafaf9;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #d6d3d1;
+	/* stone-300 */
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #a8a29e;
+	/* stone-400 */
+}
+
+/* Custom Scrollbar - Dark Theme */
+.dark ::-webkit-scrollbar-track {
+	background: #0c0a09;
+	/* stone-950 */
+}
+
+.dark ::-webkit-scrollbar-thumb {
+	background: #44403c;
+	/* stone-700 */
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+	background: #57534e;
+	/* stone-600 */
+}
+
+::selection {
+	background-color: #0c0a09;
+	color: #ffffff;
+}
+
+.dark ::selection {
+	background-color: #fafaf9;
+	/* stone-50 */
+	color: #0c0a09;
+	/* stone-950 */
+}
+/* CMDK Styles */
+[cmdk-overlay] {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  backdrop-filter: blur(4px);
+}
+
+[cmdk-dialog] {
+  z-index: 9999;
+}
+
+[cmdk-group-heading] {
+  user-select: none;
+}
+

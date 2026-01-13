@@ -1,0 +1,99 @@
+{
+  "Hero": {
+    "subtitle": "CORENTIN M.",
+    "title": "Développeur <br /> Full Stack",
+    "description": "Spécialisé dans le développement web et système. Je conçois des solutions performantes et robustes, du noyau au cloud.",
+    "cta": "Voir mes projets"
+  },
+  "Navigation": {
+    "about": "À propos",
+    "timeline": "Parcours",
+    "projects": "Projets",
+    "skills": "Compétences",
+    "contact": "Me contacter"
+  },
+  "About": {
+    "title": "À Propos de moi",
+    "description1": "Ingénieur Logiciel Full Stack et ancien étudiant de l'École 42, je conçois des systèmes performants et des solutions web complètes.",
+    "description2": "Mon expertise s'étend de la programmation système bas niveau (C, C++, Unix, Bash) aux architectures web modernes (Python, Django, Docker). J'accorde une importance capitale à la qualité du code, à la performance et à l'automatisation des déploiements.",
+    "yearsEx": "Années d'Exp.",
+    "repos": "Repos GitHub"
+  },
+  "Timeline": {
+    "title": "Mon Parcours",
+    "subtitle": "De la formation intensive à la pratique professionnelle.",
+    "bts_title": "BTS SNIR",
+    "bts_desc": "Brevet de Technicien Supérieur Systèmes Numériques - Option Informatique et Réseaux. Architecture réseau, programmation système et embarquée.",
+    "piscine_title": "Piscine 42",
+    "piscine_desc": "Sélection intensive de 4 semaines. Introduction au langage C, Shell et aux concepts fondamentaux de la programmation.",
+    "school_title": "École 42 - Cursus Common Core",
+    "school_desc": "Apprentissage intensif du C/C++ et de l'architecture système. Réalisation de projets complexes : Minishell (Bash), Cub3D (Moteur graphique), Philosophers (Concurrence).",
+    "arcom_title": "Développeur Full Stack - Arcom",
+    "arcom_desc": "Développement et maintenance d'une solution complète de gestion SAV. Optimisation des flux logistiques, automatisation des processus et création d'interfaces administratives intuitives.",
+    "arcom_year": "2024 - Présent"
+  },
+  "Projects": {
+    "title": "Projets Récents",
+    "subtitle": "Une sélection de mes travaux les plus ambitieux, alliant technique et esthétique.",
+    "arcom_desc": "Développement et maintenance depuis 2 ans d'une solution complète de gestion SAV. Optimisation des flux logistiques et interface administrative.",
+    "minishell_desc": "Réimplémentation fidèle d'un Shell Unix (Bash). Gestion avancée des processus, redirections, pipes et signaux.",
+    "cub3d_desc": "Moteur de rendu 3D style Wolfenstein 3D créé from scratch en C. Gestion de la physique, textures et raycasting.",
+    "philosophers_desc": "Simulation du problème des philosophes. Gestion complexe de la concurrence, threads, mutex et prévention des deadlocks.",
+    "demo": "Demo",
+    "code": "Code"
+  },
+  "Skills": {
+    "title": "Compétences Techniques",
+    "cpp": "C / C++ / Algorithmique",
+    "python": "Python / Django",
+    "linux": "Linux / Unix / Bash",
+    "sql": "SQL / Bases de données",
+    "git": "Git / GitHub / CI/CD",
+    "docker": "Docker / DevOps",
+    "web": "HTML / CSS / JavaScript"
+  },
+  "Contact": {
+    "title": "Travaillons Ensemble",
+    "description": "Vous avez un projet en tête ? Je suis toujours à l'écoute de nouvelles opportunités de collaboration.",
+    "location": "Suisse / France",
+    "success_title": "Message envoyé !",
+    "success_msg": "Merci de m'avoir contacté. Je vous répondrai dans les plus brefs délais.",
+    "sending": "Envoi en cours...",
+    "send": "Envoyer le message",
+    "placeholders": {
+        "lastName": "Nom",
+        "firstName": "Prénom",
+        "email": "Email",
+        "subject": "Sujet",
+        "message": "Votre message..."
+    },
+    "errors": {
+        "firstName_min": "Le prénom doit contenir au moins 2 caractères",
+        "lastName_min": "Le nom doit contenir au moins 2 caractères",
+        "email_invalid": "Adresse email invalide",
+        "subject_min": "Le sujet doit contenir au moins 5 caractères",
+        "message_min": "Le message doit contenir au moins 10 caractères",
+        "generic": "Veuillez corriger les erreurs dans le formulaire."
+    }
+  },
+  "Footer": {
+    "role": "Ingénieur Logiciel Full Stack.",
+    "rights": "Tous droits réservés."
+  },
+  "CommandMenu": {
+    "search": "Rechercher une commande...",
+    "navigation": "Navigation",
+    "actions": "Actions",
+    "theme": "Thème",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système",
+    "lang": "Langue",
+    "fr": "Français",
+    "en": "Anglais"
+  },
+  "Metadata": {
+    "title": "Corentin | Développeur Full Stack",
+    "description": "Spécialisé dans le développement web et système."
+  }
+}
