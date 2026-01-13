@@ -58,6 +58,7 @@ import { CommandMenu } from "@/components/command-menu";
 import { MouseFollower } from "@/components/mouse-follower";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { JsonLd } from "@/components/json-ld";
 
 export default async function RootLayout({
   children,
@@ -79,6 +80,9 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <JsonLd />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-50 transition-colors duration-300`}
       >
