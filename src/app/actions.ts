@@ -57,7 +57,7 @@ export async function sendEmail(prevState: ContactState, formData: FormData): Pr
     }
 
     return { success: true, message: "Email envoyé avec succès !", fieldErrors: null };
-  } catch (error) {
-    return { success: false, message: "Une erreur servenu est survenue.", fieldErrors: null };
+  } catch {
+    return { success: false, message: "Une erreur serveur est survenue.", fieldErrors: null };
   }
 }

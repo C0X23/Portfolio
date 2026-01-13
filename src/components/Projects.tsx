@@ -4,7 +4,6 @@ import { motion, useMotionValue, useAnimationFrame, animate } from "framer-motio
 import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
-import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
 const projectsFallback = [
@@ -129,12 +128,7 @@ export function Projects() {
     animate(x, targetX, {
       type: "spring",
       stiffness: 300,
-      damping: 30,
-      onUpdate: (v) => {
-        // Appliquer la logique de boucle pendant l'animation manuelle aussi si nécessaire
-        // Mais pour simplifier, on laisse l'animation finir et le prochain frame corrigera ou
-        // on corrige post-animation. Le useAnimationFrame gère le reset en continu normalement.
-      }
+      damping: 30
     });
   };
 
@@ -189,7 +183,7 @@ export function Projects() {
             className="flex gap-8 pb-8 w-max"
           >
             {duplicatedProjects.map((project, index) => (
-              <ProjectCard key={`${project.title}-${index}`} project={project} index={index} t={t} />
+              <ProjectCard key={`${project.title}-${index}`} project={project} t={t} />
             ))}
           </motion.div>
         </div>
@@ -198,7 +192,18 @@ export function Projects() {
   );
 }
 
-function ProjectCard({ project, index, t }: { project: any; index: number, t: any }) {
+interface Project {
+  title: string;
+  key: string;
+  tags: string[];
+  image: string;
+  link?: string;
+  github?: string;
+  demo?: string;
+  description?: string;
+}
+
+function ProjectCard({ project, t }: { project: Project; t: ReturnType<typeof useTranslations> }) {
   return (
     <motion.div
       className="w-[85vw] md:w-[380px] shrink-0 relative rounded-2xl bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 overflow-hidden hover:border-stone-300 dark:hover:border-stone-700 shadow-sm hover:shadow-md transition-all select-none"

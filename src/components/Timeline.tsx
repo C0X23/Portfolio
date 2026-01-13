@@ -72,7 +72,15 @@ export function Timeline() {
   );
 }
 
-function TimelineItem({ item, index }: { item: any, index: number }) {
+interface TimelineItemType {
+  year: string;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  tech: string[];
+}
+
+function TimelineItem({ item, index }: { item: TimelineItemType, index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

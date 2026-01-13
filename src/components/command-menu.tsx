@@ -4,21 +4,14 @@ import * as React from "react";
 import { Command } from "cmdk";
 import { useTheme } from "next-themes";
 import { useRouter, usePathname } from "@/i18n/routing";
-import { useLocale, useTranslations } from "next-intl";
-import { Laptop, Moon, Sun, User, Briefcase, FileText, Code, Mail, Globe, Search } from "lucide-react";
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import { useTranslations } from "next-intl";
+import { Laptop, Moon, Sun, User, Briefcase, FileText, Code, Mail, Search } from "lucide-react";
 
 export function CommandMenu() {
   const [open, setOpen] = React.useState(false);
   const { setTheme } = useTheme();
   const router = useRouter();
   const pathname = usePathname();
-  const locale = useLocale();
   const t = useTranslations("CommandMenu");
 
   React.useEffect(() => {
