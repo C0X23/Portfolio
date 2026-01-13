@@ -11,6 +11,9 @@ const skills = [
   { key: "git", level: 90 },
   { key: "docker", level: 75 },
   { key: "web", level: 90 },
+  { key: "react", level: 85 },
+  { key: "nextjs", level: 80 },
+  { key: "typescript", level: 85 },
 ];
 
 export function Skills() {

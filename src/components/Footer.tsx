@@ -5,10 +5,15 @@ import { useTranslations } from "next-intl";
 
 const techStack = [
   { name: "Next.js", url: "https://nextjs.org" },
+  { name: "React", url: "https://react.dev" },
   { name: "TypeScript", url: "https://typescriptlang.org" },
   { name: "Tailwind CSS", url: "https://tailwindcss.com" },
   { name: "Framer Motion", url: "https://framer.com/motion" },
   { name: "next-intl", url: "https://next-intl-docs.vercel.app" },
+  { name: "Lenis", url: "https://lenis.darkroom.engineering" },
+  { name: "cmdk", url: "https://cmdk.paco.me" },
+  { name: "Lucide", url: "https://lucide.dev" },
+  { name: "Vercel", url: "https://vercel.com" },
 ];
 
 export function Footer() {

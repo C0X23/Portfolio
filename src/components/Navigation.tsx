@@ -1,17 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "./mode-toggle";
 import { LangToggle } from "./lang-toggle";
 import { useTranslations } from "next-intl";
+import { Command } from "lucide-react";
 
 export function Navigation() {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMac, setIsMac] = useState(false);
   const t = useTranslations("Navigation");
+
+  useEffect(() => {
+    setIsMac(navigator.platform.toUpperCase().indexOf("MAC") >= 0);
+  }, []);
+
+  const openCommandMenu = () => {
+    document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true, ctrlKey: true }));
+  };
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
@@ -55,7 +65,17 @@ export function Navigation() {
               </NavItem>
             </ul>
           </nav>
-          <div className="relative z-50 flex items-center">
+          <div className="relative z-50 flex items-center gap-2">
+            {/* Command Palette Hint */}
+            <button
+              onClick={openCommandMenu}
+              className="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-700 dark:hover:text-stone-300 transition-colors cursor-pointer"
+              aria-label="Open command menu"
+            >
+              <Command className="w-3 h-3" />
+              <span className="font-medium">{isMac ? "⌘" : "Ctrl"}</span>
+              <span className="font-medium">K</span>
+            </button>
             <ModeToggle />
             <LangToggle />
           </div>

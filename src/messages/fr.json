@@ -50,7 +50,10 @@
     "sql": "SQL / Bases de données",
     "git": "Git / GitHub / CI/CD",
     "docker": "Docker / DevOps",
-    "web": "HTML / CSS / JavaScript"
+    "web": "HTML / CSS / JavaScript",
+    "react": "React / Framer Motion",
+    "nextjs": "Next.js / Vercel",
+    "typescript": "TypeScript / Tailwind CSS"
   },
   "Contact": {
     "title": "Travaillons Ensemble",
