@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { Command } from "cmdk";
+import * as Dialog from "@radix-ui/react-dialog";
 import { useTheme } from "next-themes";
 import { useRouter, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
@@ -652,67 +653,97 @@ export function CommandMenu() {
         e.preventDefault();
         setOpen((open) => !open);
       }
+      // Fermer avec ESC
+      if (e.key === "Escape" && open) {
+        e.preventDefault();
+        setOpen(false);
+      }
     };
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, []);
+  }, [open]);
+
+  // Empêcher le scroll de la page quand le menu est ouvert
+  React.useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+      // Stopper Lenis smooth scroll
+      if (window.lenis) {
+        window.lenis.stop();
+      }
+    } else {
+      document.body.style.overflow = "";
+      // Reprendre Lenis smooth scroll
+      if (window.lenis) {
+        window.lenis.start();
+      }
+    }
+    return () => {
+      document.body.style.overflow = "";
+      if (window.lenis) {
+        window.lenis.start();
+      }
+    };
+  }, [open]);
 
   const runCommand = React.useCallback((command: () => unknown) => {
     setOpen(false);
     command();
   }, []);
 
-  if (!open) return null;
-
   return (
-    <div className="fixed inset-0 z-[9999] bg-stone-950/50 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 flex items-center justify-center p-4">
-      <div 
-        className="fixed inset-0" 
-        onClick={() => setOpen(false)} 
-      />
-      <Command
-        className="relative w-full max-w-[640px] overflow-hidden rounded-xl border border-stone-200 bg-white shadow-2xl dark:border-stone-800 dark:bg-stone-950 animate-in zoom-in-95 duration-100"
-        loop
-      >
-        <div className="flex items-center border-b border-stone-200 dark:border-stone-800 px-3" cmdk-input-wrapper="">
-        <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-        <Command.Input
-          autoFocus
-          placeholder={t("search")}
-          className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-stone-500 disabled:cursor-not-allowed disabled:opacity-50 dark:text-stone-50"
-        />
-        <div className="text-xs text-stone-500 border border-stone-200 dark:border-stone-800 rounded px-1.5 py-0.5 select-none">ESC</div>
-      </div>
-      <Command.List className="max-h-[300px] overflow-y-auto overflow-x-hidden p-2">
-        <Command.Empty className="py-6 text-center text-sm text-stone-500">
-          No results found.
-        </Command.Empty>
+    <Command.Dialog
+      open={open}
+      onOpenChange={setOpen}
+      label="Command Menu"
+      className="fixed left-1/2 top-[20vh] z-[9999] w-[calc(100%-2rem)] max-w-[640px] -translate-x-1/2 overflow-hidden rounded-xl border border-stone-200 bg-white shadow-2xl dark:border-stone-800 dark:bg-stone-950"
+      loop
+    >
+      <Dialog.Title className="sr-only">Command Menu</Dialog.Title>
+        <div className="flex items-center border-b border-stone-200 dark:border-stone-800 px-3">
+          <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+          <Command.Input
+            autoFocus
+            placeholder={t("search")}
+            className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-stone-500 disabled:cursor-not-allowed disabled:opacity-50 dark:text-stone-50"
+          />
+          <div className="text-xs text-stone-500 border border-stone-200 dark:border-stone-800 rounded px-1.5 py-0.5 select-none">ESC</div>
+        </div>
+        <Command.List
+          className="max-h-[300px] overflow-y-auto overflow-x-hidden p-2"
+          data-lenis-prevent
+          data-lenis-prevent-wheel
+          data-lenis-prevent-touch
+        >
+          <Command.Empty className="py-6 text-center text-sm text-stone-500">
+            No results found.
+          </Command.Empty>
 
-        <Command.Group heading={t("navigation")} className="text-stone-500 dark:text-stone-400 text-xs font-medium px-2 py-1.5 mb-1 select-none">
-          <CommandItem onSelect={() => runCommand(() => window.location.hash = "#about")}>
-            <User className="mr-2 h-4 w-4" />
-            <span>About</span>
-          </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => window.location.hash = "#timeline")}>
-            <FileText className="mr-2 h-4 w-4" />
-            <span>Timeline</span>
-          </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => window.location.hash = "#projects")}>
-            <Code className="mr-2 h-4 w-4" />
-            <span>Projects</span>
-          </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => window.location.hash = "#skills")}>
-            <Briefcase className="mr-2 h-4 w-4" />
-            <span>Skills</span>
-          </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => window.location.hash = "#contact")}>
-            <Mail className="mr-2 h-4 w-4" />
-            <span>Contact</span>
-          </CommandItem>
-        </Command.Group>
+          <Command.Group heading={t("navigation")} className="text-stone-500 dark:text-stone-400 text-xs font-medium px-2 py-1.5 mb-1 select-none">
+            <CommandItem onSelect={() => runCommand(() => (window.location.hash = "#about"))}>
+              <User className="mr-2 h-4 w-4" />
+              <span>About</span>
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand(() => (window.location.hash = "#timeline"))}>
+              <FileText className="mr-2 h-4 w-4" />
+              <span>Timeline</span>
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand(() => (window.location.hash = "#projects"))}>
+              <Code className="mr-2 h-4 w-4" />
+              <span>Projects</span>
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand(() => (window.location.hash = "#skills"))}>
+              <Briefcase className="mr-2 h-4 w-4" />
+              <span>Skills</span>
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand(() => (window.location.hash = "#contact"))}>
+              <Mail className="mr-2 h-4 w-4" />
+              <span>Contact</span>
+            </CommandItem>
+          </Command.Group>
 
-        <Command.Group heading={t("theme")} className="text-stone-500 dark:text-stone-400 text-xs font-medium px-2 py-1.5 mb-1 mt-2 select-none">
+          <Command.Group heading={t("theme")} className="text-stone-500 dark:text-stone-400 text-xs font-medium px-2 py-1.5 mb-1 mt-2 select-none">
           <CommandItem onSelect={() => runCommand(() => setTheme("light"))}>
             <Sun className="mr-2 h-4 w-4" />
             <span>{t("light")}</span>
@@ -781,16 +812,16 @@ export function CommandMenu() {
           </CommandItem>
         </Command.Group>
       </Command.List>
-      </Command>
-    </div>
+    </Command.Dialog>
   );
 }
 
-function CommandItem({ children, onSelect }: { children: React.ReactNode, onSelect: () => void }) {
+function CommandItem({ children, onSelect, keywords }: { children: React.ReactNode, onSelect: () => void, keywords?: string[] }) {
   return (
     <Command.Item
       onSelect={onSelect}
-      className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-stone-100 dark:aria-selected:bg-stone-800 text-stone-900 dark:text-stone-50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 transition-colors"
+      keywords={keywords}
+      className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-stone-100 dark:hover:bg-stone-800 aria-selected:bg-stone-100 dark:aria-selected:bg-stone-800 text-stone-900 dark:text-stone-50 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 transition-colors"
     >
       {children}
     </Command.Item>
