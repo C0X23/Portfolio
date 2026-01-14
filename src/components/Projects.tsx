@@ -119,6 +119,7 @@ function ProjectCard({ project, t }: { project: Project; t: ReturnType<typeof us
             src={project.image} 
             alt={project.title}
             fill
+            sizes="380px"
             className="object-cover opacity-20 blur-xl scale-110"
             draggable={false}
           />
@@ -130,6 +131,8 @@ function ProjectCard({ project, t }: { project: Project; t: ReturnType<typeof us
             src={project.image} 
             alt={project.title}
             fill
+            sizes="(max-width: 768px) 85vw, 380px"
+            loading="lazy"
             className="object-contain transition-transform duration-500 hover:scale-105 drop-shadow-2xl"
             draggable={false}
           />
