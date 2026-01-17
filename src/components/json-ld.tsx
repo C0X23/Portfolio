@@ -1,10 +1,11 @@
-export function JsonLd() {
+export function JsonLd({ locale }: { locale: string }) {
+  const ogImageUrl = `https://cmegret.dev/${locale}/opengraph-image`;
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Corentin Megret",
     url: "https://cmegret.dev",
-    image: "https://cmegret.dev/opengraph-image",
+    image: ogImageUrl,
     jobTitle: "Développeur Full Stack",
     worksFor: {
       "@type": "Organization",

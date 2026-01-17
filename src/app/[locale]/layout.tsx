@@ -20,6 +20,7 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
   const t = await getTranslations({locale, namespace: 'Metadata'});
  
   return {
+    metadataBase: new URL("https://cmegret.dev"),
     title: t('title'),
     description: t('description'),
     keywords: ["Développeur Web", "Full Stack", "React", "Next.js", "TypeScript", "Système", "Cloud"],
@@ -43,11 +44,27 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
       title: t('title'),
       description: t('description'),
       siteName: "Corentin Megret - Portfolio",
+      images: [
+        {
+          url: `/${locale}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: `${t('title')} — ${t('description')}`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: t('title'),
       description: t('description'),
+      images: [
+        {
+          url: `/${locale}/twitter-image`,
+          width: 1200,
+          height: 630,
+          alt: `${t('title')} — ${t('description')}`,
+        },
+      ],
     },
   };
 }
@@ -81,7 +98,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <JsonLd />
+        <JsonLd locale={locale} />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-50 transition-colors duration-300`}
