@@ -53,3 +53,6 @@ yarn-error.log*
 # OS generated files
 Desktop.ini
 ehthumbs.db
+
+# Sentry Config File
+.env.sentry-build-plugin
