@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -12,38 +11,28 @@ export function Hero() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-100/50 via-stone-50 to-stone-50 dark:from-blue-900/20 dark:via-stone-950 dark:to-stone-950 -z-10" />
       
       <div className="container px-4 mx-auto text-center z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <div className="animate-fade-in-up" style={{ animationDelay: "0ms" }}>
           <h2 className="text-xl md:text-2xl font-medium text-blue-600 dark:text-blue-400 mb-4 tracking-wide">
             {t("subtitle")}
           </h2>
-        </motion.div>
+        </div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-5xl md:text-8xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-stone-900 via-stone-700 to-stone-500 dark:from-stone-100 dark:via-stone-300 dark:to-stone-500 mb-6"
+        <h1
+          className="animate-fade-in-up text-5xl md:text-8xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-stone-900 via-stone-700 to-stone-500 dark:from-stone-100 dark:via-stone-300 dark:to-stone-500 mb-6"
+          style={{ animationDelay: "100ms" }}
           dangerouslySetInnerHTML={{ __html: t.raw("title") }}
         />
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-stone-600 dark:text-stone-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+        <p
+          className="animate-fade-in-up text-stone-600 dark:text-stone-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+          style={{ animationDelay: "200ms" }}
         >
           {t("description")}
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="flex flex-col md:flex-row items-center justify-center gap-4"
+        <div
+          className="animate-fade-in-up flex flex-col md:flex-row items-center justify-center gap-4"
+          style={{ animationDelay: "300ms" }}
         >
           <a
             href="#projects"
@@ -58,7 +47,7 @@ export function Hero() {
             <SocialLink href="https://www.linkedin.com/in/corentin-megret-2b298a23b/" icon={<Linkedin className="h-5 w-5" />} />
             <SocialLink href="mailto:megret.corentin@gmail.com" icon={<Mail className="h-5 w-5" />} />
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Background Elements */}

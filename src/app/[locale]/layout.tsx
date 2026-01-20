@@ -70,9 +70,7 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
 }
 
 import { ThemeProvider } from "@/components/theme-provider";
-import { SmoothScroll } from "@/components/smooth-scroll";
-import { CommandMenu } from "@/components/command-menu";
-import { MouseFollower } from "@/components/mouse-follower";
+import { ClientOnlyComponents } from "@/components/client-only-components";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { JsonLd } from "@/components/json-ld";
@@ -110,9 +108,7 @@ export default async function RootLayout({
             enableSystem={false}
             disableTransitionOnChange
           >
-            <SmoothScroll />
-            <MouseFollower />
-            <CommandMenu />
+            <ClientOnlyComponents />
             {children}
             <SpeedInsights />
             <Analytics />

@@ -7,6 +7,25 @@
 	--color-foreground: var(--foreground);
 	/* Custom ease curves for framer motion feel in CSS transitions */
 	--ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	/* CSS animation for fade-in-up (replaces framer-motion for initial load) */
+	--animate-fade-in-up: fade-in-up 0.5s ease-out forwards;
+}
+
+/* Performance: CSS animations for initial load (no JS needed) */
+@keyframes fade-in-up {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade-in-up {
+	opacity: 0;
+	animation: fade-in-up 0.5s ease-out forwards;
 }
 
 @layer utilities {

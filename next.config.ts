@@ -14,7 +14,11 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizeCss: true,
+    // Optimize package imports for tree-shaking
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
+  // Reduce bundle size by excluding source maps in production
+  productionBrowserSourceMaps: false,
 };
 
 export default withSentryConfig(withNextIntl(nextConfig), {
