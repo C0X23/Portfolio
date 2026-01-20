@@ -4,7 +4,6 @@ import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { FR, GB } from 'country-flag-icons/react/3x2';
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 export function LangToggle() {
@@ -48,35 +47,31 @@ export function LangToggle() {
         <ChevronDown className={`w-3 h-3 text-stone-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.95 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
-            className="absolute right-0 top-full mt-2 w-40 bg-white/80 dark:bg-stone-900/80 backdrop-blur-md border border-stone-200 dark:border-stone-800 rounded-xl shadow-xl overflow-hidden p-1 z-50"
+      <div
+        className={`absolute right-0 top-full mt-2 w-40 bg-white/80 dark:bg-stone-900/80 backdrop-blur-md border border-stone-200 dark:border-stone-800 rounded-xl shadow-xl overflow-hidden p-1 z-50 transition-all duration-150 origin-top-right ${
+          isOpen 
+            ? 'opacity-100 scale-100 pointer-events-auto' 
+            : 'opacity-0 scale-95 pointer-events-none'
+        }`}
+      >
+        {languages.map((lang) => (
+          <button
+            key={lang.code}
+            onClick={() => switchLanguage(lang.code)}
+            className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all ${
+              locale === lang.code
+                ? 'bg-stone-100 dark:bg-stone-800 font-medium text-stone-900 dark:text-stone-100'
+                : 'text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800/50'
+            }`}
           >
-            {languages.map((lang) => (
-              <button
-                key={lang.code}
-                onClick={() => switchLanguage(lang.code)}
-                className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all ${
-                  locale === lang.code
-                    ? 'bg-stone-100 dark:bg-stone-800 font-medium text-stone-900 dark:text-stone-100'
-                    : 'text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800/50'
-                }`}
-              >
-                <lang.flag className="w-5 rounded-[2px] shadow-sm" />
-                <span>{lang.name}</span>
-                {locale === lang.code && (
-                    <motion.div layoutId="activeLang" className="absolute left-0 w-0.5 h-4 bg-blue-500 rounded-full ml-1" />
-                )}
-              </button>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <lang.flag className="w-5 rounded-[2px] shadow-sm" />
+            <span>{lang.name}</span>
+            {locale === lang.code && (
+              <div className="absolute left-0 w-0.5 h-4 bg-blue-500 rounded-full ml-1" />
+            )}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "./mode-toggle";
 import { LangToggle } from "./lang-toggle";
@@ -9,40 +8,41 @@ import { useTranslations } from "next-intl";
 import { Command } from "lucide-react";
 
 export function Navigation() {
-  const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isMac, setIsMac] = useState(false);
+  const lastScrollY = useRef(0);
   const t = useTranslations("Navigation");
 
   useEffect(() => {
     setIsMac(navigator.platform.toUpperCase().indexOf("MAC") >= 0);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY.current && currentScrollY > 150) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+      setScrolled(currentScrollY > 50);
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const openCommandMenu = () => {
     document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true, ctrlKey: true }));
   };
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0;
-    if (latest > previous && latest > 150) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
-    setScrolled(latest > 50);
-  });
-
   return (
-    <motion.header
-      variants={{
-        visible: { y: 0 },
-        hidden: { y: "-100%" },
-      }}
-      animate={hidden ? "hidden" : "visible"}
-      transition={{ duration: 0.35, ease: "easeInOut" }}
+    <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-300",
+        hidden ? "-translate-y-full" : "translate-y-0",
         scrolled
           ? "bg-white/80 dark:bg-stone-950/80 backdrop-blur-md border-b border-stone-200 dark:border-stone-800 shadow-sm"
           : "bg-transparent"
@@ -81,7 +81,7 @@ export function Navigation() {
           </div>
         </div>
       </div>
-    </motion.header>
+    </header>
   );
 }
 

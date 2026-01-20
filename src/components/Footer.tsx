@@ -1,7 +1,5 @@
-"use client";
-
 import { Github, Linkedin, Mail } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 const techStack = [
   { name: "Next.js", url: "https://nextjs.org" },
@@ -13,12 +11,11 @@ const techStack = [
   { name: "Lenis", url: "https://lenis.darkroom.engineering" },
   { name: "cmdk", url: "https://cmdk.paco.me" },
   { name: "Lucide", url: "https://lucide.dev" },
-  { name: "Vercel", url: "https://vercel.com" },
 ];
 
-export function Footer() {
+export async function Footer() {
   const currentYear = new Date().getFullYear();
-  const t = useTranslations("Footer");
+  const t = await getTranslations("Footer");
 
   return (
     <footer className="bg-stone-100 dark:bg-stone-900 border-t border-stone-200 dark:border-stone-800 py-12 md:py-16 transition-colors duration-300">
