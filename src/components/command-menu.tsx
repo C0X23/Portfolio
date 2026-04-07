@@ -6,12 +6,12 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useTheme } from "next-themes";
 import { useRouter, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
-import { Laptop, Moon, Sun, User, Briefcase, FileText, Code, Mail, Search, Coffee, Terminal, RotateCcw, Tv, Cat, Film, Globe, Monitor, Sparkles } from "lucide-react";
+import { Laptop, Moon, Sun, User, Briefcase, FileText, Code, Mail, Search, Coffee, Terminal, RotateCcw, Tv, Film, Globe, Monitor, Sparkles } from "lucide-react";
 
 // Easter Eggs Functions
 const easterEggs = {
   // Mode Hacker - sudo hire me
-  hackerMode: () => {
+  hackerMode: (t: (key: string) => string) => {
     const overlay = document.createElement("div");
     overlay.id = "hacker-overlay";
     overlay.style.cssText = `
@@ -24,9 +24,9 @@ const easterEggs = {
     const lines = [
       { text: "$ sudo hire me", color: "#a855f7" },
       { text: "[sudo] password for recruiter: ********", color: "#22c55e" },
-      { text: "Authenticating...", color: "#22c55e" },
+      { text: t("hacker_authenticating"), color: "#22c55e" },
       { text: "", color: "" },
-      { text: "Access granted.", color: "#4ade80" },
+      { text: t("hacker_access_granted"), color: "#4ade80" },
       { text: "", color: "" },
       { text: "$ cat /home/corentin/skills.txt", color: "#a855f7" },
       { text: "", color: "" },
@@ -38,13 +38,13 @@ const easterEggs = {
       { text: "", color: "" },
       { text: "$ ./hire_corentin.sh", color: "#a855f7" },
       { text: "", color: "" },
-      { text: "Initializing hiring sequence...", color: "#22c55e" },
-      { text: "[OK] Skills verified", color: "#4ade80" },
-      { text: "[OK] Motivation: 100%", color: "#4ade80" },
-      { text: "[OK] Coffee dependency: Maximum", color: "#4ade80" },
-      { text: "[OK] Available: Yes", color: "#4ade80" },
+      { text: t("hacker_init"), color: "#22c55e" },
+      { text: t("hacker_skills_verified"), color: "#4ade80" },
+      { text: t("hacker_motivation"), color: "#4ade80" },
+      { text: t("hacker_coffee_dep"), color: "#4ade80" },
+      { text: t("hacker_available"), color: "#4ade80" },
       { text: "", color: "" },
-      { text: "HIRE SUCCESSFUL!", color: "#facc15", bold: true, big: true },
+      { text: t("hacker_success"), color: "#facc15", bold: true, big: true },
       { text: "", color: "" },
       { text: "Contact: megret.corentin@gmail.com", color: "#60a5fa" },
     ];
@@ -157,47 +157,144 @@ const easterEggs = {
   },
 
   // Coffee - animation de remplissage
-  coffee: () => {
+  coffee: (t: (key: string) => string) => {
     const container = document.createElement("div");
     container.style.cssText = `
       position: fixed; inset: 0; z-index: 99999;
-      background: rgba(0,0,0,0.8); display: flex; flex-direction: column;
+      background: rgba(12, 10, 9, 0.92); backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
       align-items: center; justify-content: center; font-family: system-ui;
+      opacity: 1; transition: opacity 0.4s ease; cursor: pointer;
     `;
+
     container.innerHTML = `
-      <div style="position: relative; width: 120px; height: 150px;">
-        <div style="position: absolute; bottom: 0; left: 10px; right: 10px; height: 0; background: linear-gradient(to top, #78350f, #92400e); border-radius: 0 0 10px 10px; animation: fillCoffee 2s ease-out forwards;"></div>
-        <div style="position: absolute; inset: 0; border: 6px solid #d6d3d1; border-radius: 0 0 20px 20px; border-top: none;"></div>
-        <div style="position: absolute; top: 20px; right: -30px; width: 30px; height: 50px; border: 6px solid #d6d3d1; border-left: none; border-radius: 0 20px 20px 0;"></div>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:20px; max-width:300px; width:100%; padding: 0 24px;">
+
+        <!-- Header -->
+        <div style="text-align:center;">
+          <p style="color:#a8a29e; font-size:10px; letter-spacing:0.25em; text-transform:uppercase; margin:0 0 6px 0;">${t("coffee_label")}</p>
+          <p id="coffee-status" style="color:#fafaf9; font-size:20px; font-weight:600; margin:0; transition: all 0.4s ease;">${t("coffee_status_0")}</p>
+        </div>
+
+        <!-- Cup wrapper -->
+        <div style="position:relative; width:130px; height:175px;">
+
+          <!-- Steam -->
+          <div id="steam-container" style="position:absolute; top:-36px; left:0; right:0; height:40px; opacity:0; transition:opacity 1s ease;">
+            <div style="position:absolute; left:22px; width:8px; height:28px; background:linear-gradient(to top,rgba(250,250,249,0.35),transparent); border-radius:6px 6px 0 0; animation:steamRise 2.4s ease-in-out infinite;"></div>
+            <div style="position:absolute; left:52px; width:8px; height:28px; background:linear-gradient(to top,rgba(250,250,249,0.35),transparent); border-radius:6px 6px 0 0; animation:steamRise 2.4s ease-in-out 0.8s infinite;"></div>
+            <div style="position:absolute; left:82px; width:8px; height:28px; background:linear-gradient(to top,rgba(250,250,249,0.35),transparent); border-radius:6px 6px 0 0; animation:steamRise 2.4s ease-in-out 1.6s infinite;"></div>
+          </div>
+
+          <!-- Saucer -->
+          <div style="position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:148px; height:13px; background:#1c1917; border-radius:50%; box-shadow:0 3px 10px rgba(0,0,0,0.5);"></div>
+
+          <!-- Cup body -->
+          <div id="cup-body" style="position:absolute; bottom:12px; left:8px; right:8px; height:145px; border:5px solid #44403c; border-radius:8px 8px 28px 28px; overflow:hidden; transition: box-shadow 0.6s ease;">
+            <!-- Coffee liquid -->
+            <div id="coffee-fill" style="position:absolute; bottom:0; left:0; right:0; height:0%; background:linear-gradient(to top,#78350f 0%,#92400e 55%,#b45309 100%); transition:height 0.04s linear;"></div>
+            <!-- Shine -->
+            <div style="position:absolute; top:12px; left:10px; width:7px; height:32px; background:rgba(255,255,255,0.07); border-radius:4px;"></div>
+          </div>
+
+          <!-- Handle -->
+          <div style="position:absolute; bottom:42px; right:-20px; width:26px; height:48px; border:5px solid #44403c; border-left:none; border-radius:0 18px 18px 0;"></div>
+        </div>
+
+        <!-- Progress bar -->
+        <div style="width:100%;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+            <span style="color:#78716c; font-size:11px; letter-spacing:0.05em;">${t("coffee_caffeine")}</span>
+            <span style="color:#d6d3d1; font-size:13px; font-weight:600;"><span id="coffee-level">0</span>%</span>
+          </div>
+          <div style="width:100%; height:4px; background:#292524; border-radius:2px; overflow:hidden;">
+            <div id="progress-bar" style="height:100%; width:0%; background:linear-gradient(to right,#78350f,#b45309,#f59e0b); border-radius:2px; transition:width 0.04s linear;"></div>
+          </div>
+        </div>
+
+        <!-- Dev stats (visibles à 100%) -->
+        <div id="dev-stats" style="opacity:0; transition:opacity 0.8s ease; width:100%; background:rgba(28,25,23,0.9); border:1px solid #292524; border-radius:10px; padding:12px 16px; display:flex; flex-direction:column; gap:7px;">
+          <p style="color:#a8a29e; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; margin:0 0 2px 0;">${t("coffee_recharged")}</p>
+          <div style="display:flex; justify-content:space-between;"><span style="color:#78716c; font-size:12px;">${t("coffee_concentration")}</span><span style="color:#4ade80; font-size:12px; font-weight:600;">+∞</span></div>
+          <div style="display:flex; justify-content:space-between;"><span style="color:#78716c; font-size:12px;">${t("coffee_bugs")}</span><span style="color:#4ade80; font-size:12px; font-weight:600;">+87%</span></div>
+          <div style="display:flex; justify-content:space-between;"><span style="color:#78716c; font-size:12px;">${t("coffee_typing")}</span><span style="color:#4ade80; font-size:12px; font-weight:600;">+340 wpm</span></div>
+          <div style="display:flex; justify-content:space-between;"><span style="color:#78716c; font-size:12px;">${t("coffee_meetings")}</span><span style="color:#4ade80; font-size:12px; font-weight:600;">${t("coffee_meetings_value")}</span></div>
+        </div>
+
+        <p style="color:#44403c; font-size:11px; margin:0;">${t("coffee_dismiss")}</p>
       </div>
-      <p style="color: #fafaf9; margin-top: 30px; font-size: 18px;">Rechargement en cours...</p>
-      <p style="color: #78716c; margin-top: 10px; font-size: 14px;">Niveau de caféine: <span id="coffee-level">0</span>%</p>
     `;
+
     const style = document.createElement("style");
     style.textContent = `
-      @keyframes fillCoffee {
-        0% { height: 0; }
-        100% { height: 120px; }
+      @keyframes steamRise {
+        0%   { transform: translateY(0)    scaleX(1);   opacity: 0.7; }
+        50%  { transform: translateY(-14px) scaleX(1.5); opacity: 0.35; }
+        100% { transform: translateY(-28px) scaleX(0.7); opacity: 0; }
+      }
+      @keyframes cupGlow {
+        0%, 100% { box-shadow: 0 0 0   0   rgba(180,83,9,0); }
+        50%       { box-shadow: 0 0 22px 6px rgba(180,83,9,0.3); }
       }
     `;
     document.head.appendChild(style);
     document.body.appendChild(container);
-    
-    // Pouring coffee sound
+
     const pouringSound = new Audio("/sounds/pouring-coffee.mp3");
     pouringSound.volume = 0.5;
     pouringSound.play().catch(() => {});
-    
+
+    const statusMessages: [number, string][] = [
+      [0,  t("coffee_status_0")],
+      [25, t("coffee_status_25")],
+      [50, t("coffee_status_50")],
+      [75, t("coffee_status_75")],
+      [100, t("coffee_status_100")],
+    ];
+
     let level = 0;
-    const levelEl = container.querySelector("#coffee-level");
+    const levelEl   = container.querySelector("#coffee-level");
+    const fillEl    = container.querySelector<HTMLElement>("#coffee-fill");
+    const progressEl= container.querySelector<HTMLElement>("#progress-bar");
+    const statusEl  = container.querySelector<HTMLElement>("#coffee-status");
+    const steamEl   = container.querySelector<HTMLElement>("#steam-container");
+    const statsEl   = container.querySelector<HTMLElement>("#dev-stats");
+    const cupBodyEl = container.querySelector<HTMLElement>("#cup-body");
+
     const interval = setInterval(() => {
-      level += 2;
-      if (levelEl) levelEl.textContent = String(Math.min(level, 100));
-      if (level >= 100) clearInterval(interval);
-    }, 40);
-    
-    setTimeout(() => { container.remove(); style.remove(); pouringSound.pause(); }, 3000);
-    container.onclick = () => { container.remove(); style.remove(); clearInterval(interval); pouringSound.pause(); };
+      level = Math.min(level + 1, 100);
+      if (levelEl)    levelEl.textContent = String(level);
+      if (fillEl)     fillEl.style.height = `${level}%`;
+      if (progressEl) progressEl.style.width = `${level}%`;
+
+      // Status message
+      for (let i = statusMessages.length - 1; i >= 0; i--) {
+        if (level >= statusMessages[i][0] && statusEl) {
+          statusEl.textContent = statusMessages[i][1];
+          break;
+        }
+      }
+
+      // Steam à 50%
+      if (level >= 50 && steamEl) steamEl.style.opacity = "1";
+
+      if (level >= 100) {
+        clearInterval(interval);
+        if (statsEl)   statsEl.style.opacity = "1";
+        if (cupBodyEl) cupBodyEl.style.animation = "cupGlow 1.5s ease-in-out infinite";
+        setTimeout(dismiss, 4000);
+      }
+    }, 25);
+
+    const dismiss = () => {
+      clearInterval(interval);
+      pouringSound.pause();
+      container.style.opacity = "0";
+      setTimeout(() => { container.remove(); style.remove(); }, 400);
+    };
+
+    container.onclick = dismiss;
+    setTimeout(() => { if (document.body.contains(container)) dismiss(); }, 9000);
   },
 
   // Flip the page
@@ -237,97 +334,60 @@ const easterEggs = {
     setTimeout(() => style.remove(), 8000);
   },
 
-  // Nyan Cat - vrai GIF
-  nyanCat: () => {
-    const container = document.createElement("div");
-    container.style.cssText = `
-      position: fixed; inset: 0; z-index: 99999;
-      background: #003366; overflow: hidden;
-    `;
-    
-    // Rainbow trail
-    const rainbow = document.createElement("div");
-    rainbow.style.cssText = `
-      position: absolute; top: 50%; left: 0; right: 50%;
-      transform: translateY(-50%); height: 80px;
-      background: linear-gradient(to bottom,
-        #ff0000 0%, #ff0000 16.66%,
-        #ff9900 16.66%, #ff9900 33.32%,
-        #ffff00 33.32%, #ffff00 49.98%,
-        #33ff00 49.98%, #33ff00 66.64%,
-        #0099ff 66.64%, #0099ff 83.3%,
-        #6633ff 83.3%, #6633ff 100%
-      );
-      animation: rainbowMove 4s linear forwards;
-    `;
-    
-    // Nyan cat GIF
-    const nyan = document.createElement("img");
-    nyan.src = "https://media.tenor.com/Xpek5iXaRjMAAAAi/nyan-cat-rainbow.gif";
-    nyan.style.cssText = `
-      position: absolute; top: 50%; left: -200px;
-      transform: translateY(-50%); height: 100px; width: auto;
-      animation: nyanMove 4s linear forwards;
-      image-rendering: pixelated;
-    `;
-    
-    const style = document.createElement("style");
-    style.textContent = `
-      @keyframes nyanMove {
-        0% { left: -200px; }
-        100% { left: calc(100% + 200px); }
-      }
-      @keyframes rainbowMove {
-        0% { right: 100%; }
-        100% { right: -100%; }
-      }
-    `;
-    
-    document.head.appendChild(style);
-    container.appendChild(rainbow);
-    container.appendChild(nyan);
-    document.body.appendChild(container);
-    
-    container.onclick = () => { container.remove(); style.remove(); };
-    setTimeout(() => { container.remove(); style.remove(); }, 4000);
-  },
-
   // Who Am I
-  whoami: () => {
-    const modal = document.createElement("div");
-    modal.style.cssText = `
-      position: fixed; inset: 0; z-index: 99999;
-      background: rgba(0,0,0,0.85); display: flex;
-      align-items: center; justify-content: center;
-      animation: fadeIn 0.3s ease;
+  whoami: (t: (key: string) => string) => {
+    const win = document.createElement("div");
+    win.style.cssText = `
+      position: fixed; bottom: 32px; right: 32px; z-index: 99999;
+      width: 420px; background: #0d0d0d; border: 1px solid #2a2a2a;
+      border-radius: 8px; font-family: 'Courier New', monospace;
+      font-size: 13px; color: #d4d4d4; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      animation: whoamiSlideIn 0.25s cubic-bezier(0.16,1,0.3,1) forwards;
     `;
-    modal.innerHTML = `
-      <div style="background: linear-gradient(135deg, #1c1917 0%, #292524 100%); color: #fafaf9; padding: 40px; border-radius: 20px; max-width: 420px; text-align: center; font-family: system-ui; border: 1px solid #3f3f46; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);">
-        <div style="width: 80px; height: 80px; margin: 0 auto 20px; background: linear-gradient(135deg, #78716c, #a8a29e); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1c1917" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-        </div>
-        <h2 style="font-size: 26px; margin-bottom: 8px; font-weight: 700;">Corentin Megret</h2>
-        <p style="color: #a8a29e; margin-bottom: 20px; font-size: 15px;">Full Stack Developer</p>
-        <div style="background: #0a0a0a; border-radius: 12px; padding: 16px; margin-bottom: 20px; text-align: left; font-family: 'Courier New', monospace; font-size: 13px; color: #22c55e;">
-          <p style="margin: 0 0 8px 0;"><span style="color: #a855f7;">$</span> whoami</p>
-          <p style="margin: 0; color: #d6d3d1;">Passionné de code, fan de 42, amateur de clean code et de café. Transforme les specs en features depuis 2021.</p>
-        </div>
-        <button onclick="this.parentElement.parentElement.remove()" style="padding: 12px 32px; background: #fafaf9; color: #1c1917; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 15px; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-          Fermer
-        </button>
+
+    win.innerHTML = `
+      <!-- Title bar -->
+      <div style="display:flex; align-items:center; gap:6px; padding:10px 14px; background:#1a1a1a; border-bottom:1px solid #2a2a2a;">
+        <div style="width:11px;height:11px;border-radius:50%;background:#ff5f56;"></div>
+        <div style="width:11px;height:11px;border-radius:50%;background:#ffbd2e;"></div>
+        <div style="width:11px;height:11px;border-radius:50%;background:#27c93f;"></div>
+        <span style="margin-left:8px; color:#555; font-size:11px;">corentin@portfolio</span>
+      </div>
+      <!-- Terminal body -->
+      <div style="padding:16px 18px; line-height:1.9;">
+        <p style="margin:0; color:#6b7280;">corentin@portfolio:~$</p>
+        <p style="margin:0; color:#e5e7eb;"><span style="color:#22d3ee;">uid</span>=1337(<span style="color:#a78bfa;">corentin</span>) <span style="color:#22d3ee;">gid</span>=42(42-school)</p>
+        <p style="margin:0; color:#e5e7eb;"><span style="color:#22d3ee;">groups</span>=${t("whoami_groups")}</p>
+        <p style="margin:0 0 4px; color:#555;">──────────────────────────────</p>
+        <p style="margin:0; color:#6b7280;">corentin@portfolio:~$ cat .aboutme</p>
+        <p style="margin:0; color:#e5e7eb;">${t("whoami_description")}</p>
+        <p style="margin:0 0 4px; color:#555;">──────────────────────────────</p>
+        <p style="margin:0; color:#6b7280;">corentin@portfolio:~$ uptime</p>
+        <p style="margin:0; color:#e5e7eb;">${t("whoami_uptime")}</p>
+        <p style="margin:12px 0 0; color:#374151; font-size:11px;">${t("whoami_close")}</p>
       </div>
     `;
-    document.body.appendChild(modal);
-    modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes whoamiSlideIn {
+        from { transform: translateY(20px); opacity: 0; }
+        to   { transform: translateY(0);    opacity: 1; }
+      }
+    `;
+    document.head.appendChild(style);
+    document.body.appendChild(win);
+
+    const dismiss = () => { win.remove(); style.remove(); document.removeEventListener("keydown", onKey); };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") dismiss(); };
+    win.onclick = dismiss;
+    document.addEventListener("keydown", onKey);
+    setTimeout(dismiss, 8000);
   },
 
   // Credits
-  credits: () => {
+  credits: (t: (key: string) => string) => {
     const credits = document.createElement("div");
     credits.style.cssText = `
       position: fixed; inset: 0; z-index: 99999;
@@ -339,9 +399,9 @@ const easterEggs = {
       <div id="credits-scroll" style="position: absolute; width: 100%; animation: creditsRoll 12s linear forwards;">
         <div style="height: 100vh;"></div>
         <h1 style="font-size: 36px; margin-bottom: 50px; font-weight: 300; letter-spacing: 8px;">CREDITS</h1>
-        <p style="color: #78716c; margin-bottom: 50px; font-size: 14px; text-transform: uppercase; letter-spacing: 4px;">Un portfolio propulsé par</p>
+        <p style="color: #78716c; margin-bottom: 50px; font-size: 14px; text-transform: uppercase; letter-spacing: 4px;">${t("credits_powered_by")}</p>
         <div style="font-size: 22px; line-height: 3;">
-          <p style="color: #61dafb;">React & Next.js</p>
+          <p style="color: #61dafb;">React &amp; Next.js</p>
           <p style="color: #3178c6;">TypeScript</p>
           <p style="color: #06b6d4;">Tailwind CSS</p>
           <p style="color: #f472b6;">Framer Motion</p>
@@ -351,7 +411,7 @@ const easterEggs = {
           <p style="color: #ffffff;">Vercel</p>
         </div>
         <div style="margin-top: 80px; color: #78716c; font-size: 14px;">
-          <p>Développé avec passion</p>
+          <p>${t("credits_made_with")}</p>
           <p style="margin-top: 30px; font-size: 18px; color: #fafaf9;">par Corentin Megret</p>
         </div>
         <p style="margin-top: 50px; font-size: 12px; color: #3f3f46;">2026</p>
@@ -399,244 +459,440 @@ const easterEggs = {
     setTimeout(() => { toast.remove(); style.remove(); }, 3000);
   },
 
-  // Windows XP Sound
-  xpSound: () => {
-    const willCrash = Math.random() < 0.3; // 30% de chance de crash
-    const crashPercent = willCrash ? Math.floor(Math.random() * 50) + 40 : 999; // Crash entre 40% et 90%
-    let currentPercent = 0;
-    let crashed = false;
-    
-    const modal = document.createElement("div");
-    modal.style.cssText = `
-      position: fixed; inset: 0; z-index: 99999;
-      background: #000; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-    `;
-    modal.innerHTML = `
-      <div style="text-align: center;">
-        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 30px;">
-          <div style="width: 48px; height: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 3px;">
-            <div style="background: #ff0000; border-radius: 2px;"></div>
-            <div style="background: #00ff00; border-radius: 2px;"></div>
-            <div style="background: #0000ff; border-radius: 2px;"></div>
-            <div style="background: #ffff00; border-radius: 2px;"></div>
-          </div>
-          <div>
-            <div style="font-family: 'Franklin Gothic Medium', Tahoma, sans-serif; font-size: 32px; color: white; font-weight: normal; font-style: italic;">Microsoft</div>
-            <div style="font-family: 'Franklin Gothic Medium', Tahoma, sans-serif; font-size: 48px; color: white; font-weight: bold; letter-spacing: -2px; margin-top: -8px;">Windows<span style="color: #ff6600; font-size: 28px; vertical-align: super;">XP</span></div>
-          </div>
-        </div>
-        <div style="width: 200px; height: 24px; background: #333; border-radius: 12px; overflow: hidden; margin: 0 auto 15px;">
-          <div id="xp-progress" style="width: 0%; height: 100%; background: linear-gradient(90deg, #0058e6, #3b95ff, #0058e6); transition: width 0.1s; border-radius: 12px;"></div>
-        </div>
-        <div id="xp-loading" style="display: flex; gap: 8px; justify-content: center; margin-bottom: 20px;">
-          <div style="width: 10px; height: 10px; background: #0058e6; border-radius: 50%; animation: xpBounce 0.6s infinite 0s;"></div>
-          <div style="width: 10px; height: 10px; background: #0058e6; border-radius: 50%; animation: xpBounce 0.6s infinite 0.1s;"></div>
-          <div style="width: 10px; height: 10px; background: #0058e6; border-radius: 50%; animation: xpBounce 0.6s infinite 0.2s;"></div>
-        </div>
-        <p id="xp-status" style="color: #888; font-family: Tahoma, sans-serif; font-size: 12px; margin: 0;">Chargement de Windows...</p>
-        <p id="xp-percent" style="color: #666; font-family: Tahoma, sans-serif; font-size: 11px; margin-top: 8px;">0%</p>
-      </div>
-    `;
-    
+  // Windows XP — multi-phase boot experience
+  xpSound: (t: (key: string) => string) => {
+    const willCrash = Math.random() < 0.3;
+    const crashPercent = willCrash ? Math.floor(Math.random() * 40) + 45 : 999;
+    let phase = "bios";
+    let dismissed = false;
+
     const style = document.createElement("style");
     style.textContent = `
-      @keyframes xpBounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-8px); }
-      }
+      @keyframes xpRoll    { 0%{left:-36px;opacity:.4} 10%{opacity:1} 90%{opacity:1} 100%{left:195px;opacity:.4} }
+      @keyframes xpFadeIn  { from{opacity:0} to{opacity:1} }
+      @keyframes xpBlink   { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+      @keyframes xpPop     { from{opacity:0;transform:scale(.96)} to{opacity:1;transform:scale(1)} }
+      @keyframes xpSlideUp { from{opacity:0;transform:translate(-50%,-52%)} to{opacity:1;transform:translate(-50%,-58%)} }
     `;
     document.head.appendChild(style);
-    document.body.appendChild(modal);
-    
-    const progressBar = modal.querySelector("#xp-progress") as HTMLElement;
-    const statusText = modal.querySelector("#xp-status") as HTMLElement;
-    const percentText = modal.querySelector("#xp-percent") as HTMLElement;
-    const loadingDots = modal.querySelector("#xp-loading") as HTMLElement;
-    
-    // Play startup sound
-    const startupAudio = new Audio("/sounds/windows-xp-startup.wav");
-    startupAudio.volume = 0.5;
-    startupAudio.play().catch(() => {});
-    
-    const messages = [
-      "Chargement de Windows...",
-      "Préparation du bureau...",
-      "Chargement des paramètres...",
-      "Initialisation des pilotes...",
-      "Configuration du réseau...",
-      "Chargement des services...",
-      "Préparation de votre session..."
-    ];
-    
-    const interval = setInterval(() => {
-      if (crashed) return;
-      
-      currentPercent += Math.floor(Math.random() * 5) + 3;
-      
-      if (currentPercent >= crashPercent) {
-        // CRASH!
-        crashed = true;
-        clearInterval(interval);
-        startupAudio.pause();
-        
-        const criticalAudio = new Audio("/sounds/windows-xp-critical-stop.wav");
-        criticalAudio.volume = 0.6;
-        criticalAudio.play();
-        
-        loadingDots.style.display = "none";
-        progressBar.style.background = "#cc0000";
-        statusText.style.color = "#ff4444";
-        statusText.textContent = "❌ Une erreur fatale s'est produite";
-        percentText.textContent = `Erreur à ${currentPercent}%`;
-        
-        setTimeout(() => {
-          modal.remove();
-          style.remove();
-        }, 2500);
-        return;
+
+    const overlay = document.createElement("div");
+    overlay.style.cssText = `position:fixed;inset:0;z-index:99999;overflow:hidden;cursor:pointer;background:#000;`;
+    document.body.appendChild(overlay);
+
+    const dismiss = () => {
+      if (dismissed) return;
+      dismissed = true;
+      document.removeEventListener("keydown", keyHandler);
+      overlay.style.transition = "opacity .25s";
+      overlay.style.opacity = "0";
+      setTimeout(() => { overlay.remove(); style.remove(); }, 260);
+    };
+    const keyHandler = (e: KeyboardEvent) => { if (e.key === "Escape") dismiss(); };
+    document.addEventListener("keydown", keyHandler);
+    overlay.addEventListener("click", () => { if (phase !== "welcome") dismiss(); });
+
+    // ── PHASE 1: BIOS POST ──────────────────────────────────────────────────
+    overlay.innerHTML = `
+      <div style="padding:22px 28px;font-family:'Courier New',monospace;font-size:13px;color:#ccc;line-height:1.85;animation:xpFadeIn .25s ease;">
+        <div style="color:#fff;font-weight:bold;">Award Medallion BIOS v6.0 PG, An Energy Star Ally</div>
+        <div style="color:#777;margin-bottom:10px;">Copyright (C) 1984-2003, Award Software, Inc.</div>
+        <div>CPU: Intel(R) Pentium(R) 4 CPU 2.80GHz</div>
+        <div>Memory Test: <span id="xp-ram">0</span> KB OK</div>
+        <div style="margin-top:8px;color:#777;">Detecting IDE drives...</div>
+        <div style="color:#777;">Primary Master&nbsp;&nbsp;: WDC WD800JB-75JMA0</div>
+        <div style="color:#777;">Primary Slave&nbsp;&nbsp;&nbsp;: ATAPI CD-ROM Drive</div>
+        <div style="color:#777;">Secondary Master: Not Detected</div>
+        <div style="margin-top:14px;color:#ff0;">Press <span style="color:#fff;font-weight:bold;">DEL</span> to enter SETUP &nbsp; <span style="color:#fff;font-weight:bold;">F8</span> for Boot Menu</div>
+        <div style="margin-top:6px;color:#444;font-size:11px;">ESC ou clic pour fermer</div>
+      </div>`;
+
+    let ram = 0;
+    const ramTimer = setInterval(() => {
+      ram = Math.min(ram + Math.floor(Math.random() * 28672) + 8192, 524288);
+      const el = document.getElementById("xp-ram");
+      if (el) el.textContent = ram.toLocaleString();
+      if (ram >= 524288) clearInterval(ramTimer);
+    }, 55);
+
+    // ── PHASE 2: XP BOOT SCREEN ─────────────────────────────────────────────
+    setTimeout(() => {
+      if (dismissed) return;
+      clearInterval(ramTimer);
+      phase = "boot";
+
+      const startupAudio = new Audio("/sounds/windows-xp-startup.wav");
+      startupAudio.volume = 0.5;
+      startupAudio.play().catch(() => {});
+
+      overlay.innerHTML = `
+        <div style="width:100%;height:100%;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:xpFadeIn .5s ease;">
+          <div style="display:flex;align-items:center;gap:18px;margin-bottom:60px;">
+            <div style="width:58px;height:58px;background:conic-gradient(#f33 0deg 90deg,#3a3 90deg 180deg,#33f 180deg 270deg,#fa3 270deg 360deg);border-radius:5px;transform:perspective(80px) rotateY(-6deg) rotateX(3deg);box-shadow:0 4px 24px rgba(255,255,255,.1);"></div>
+            <div>
+              <div style="font-family:'Franklin Gothic Medium','Arial Narrow',Tahoma,sans-serif;font-size:25px;color:#fff;font-style:italic;font-weight:400;letter-spacing:1px;">Microsoft</div>
+              <div style="font-family:'Franklin Gothic Medium','Arial Narrow',Tahoma,sans-serif;font-size:54px;color:#fff;font-weight:900;letter-spacing:-3px;line-height:1;margin-top:-5px;">Windows<span style="color:#f90;font-size:30px;vertical-align:super;font-weight:700;"> XP</span></div>
+              <div style="font-family:Tahoma,sans-serif;font-size:12px;color:#666;letter-spacing:2px;font-style:italic;margin-top:4px;">${t("xp_boot_edition")}</div>
+            </div>
+          </div>
+          <div style="width:182px;height:20px;border:1px solid #3a3a3a;border-radius:10px;background:#0a0a0a;overflow:hidden;position:relative;margin-bottom:18px;">
+            <div style="position:absolute;top:3px;width:32px;height:14px;background:linear-gradient(180deg,#5aabff,#0058e6);border-radius:7px;animation:xpRoll 1.35s linear infinite 0s;box-shadow:0 0 8px rgba(59,149,255,.65);"></div>
+            <div style="position:absolute;top:3px;width:32px;height:14px;background:linear-gradient(180deg,#5aabff,#0058e6);border-radius:7px;animation:xpRoll 1.35s linear infinite .45s;box-shadow:0 0 8px rgba(59,149,255,.65);"></div>
+            <div style="position:absolute;top:3px;width:32px;height:14px;background:linear-gradient(180deg,#5aabff,#0058e6);border-radius:7px;animation:xpRoll 1.35s linear infinite .9s;box-shadow:0 0 8px rgba(59,149,255,.65);"></div>
+          </div>
+          <p id="xp-status" style="color:#444;font-family:Tahoma,sans-serif;font-size:11px;text-align:center;">${t("xp_loading_1")}</p>
+        </div>`;
+
+      const msgs = [t("xp_loading_1"),t("xp_loading_2"),t("xp_loading_3"),t("xp_loading_4"),t("xp_loading_5"),t("xp_loading_6"),t("xp_loading_7")];
+      let mi = 0;
+      const msgTimer = setInterval(() => {
+        if (dismissed) { clearInterval(msgTimer); return; }
+        mi = (mi + 1) % msgs.length;
+        const el = document.getElementById("xp-status");
+        if (el) el.textContent = msgs[mi];
+      }, 800);
+
+      let prog = 0;
+      const progTimer = setInterval(() => {
+        if (dismissed) { clearInterval(progTimer); clearInterval(msgTimer); return; }
+        prog += Math.random() * 5 + 2;
+        if (willCrash && prog >= crashPercent) {
+          clearInterval(progTimer); clearInterval(msgTimer);
+          startupAudio.pause();
+          showBSOD();
+          return;
+        }
+        if (prog >= 100) {
+          clearInterval(progTimer); clearInterval(msgTimer);
+          setTimeout(() => { if (!dismissed) showWelcome(startupAudio); }, 700);
+        }
+      }, 110);
+
+    }, 2000);
+
+    // ── BSOD ────────────────────────────────────────────────────────────────
+    const showBSOD = () => {
+      if (dismissed) return;
+      phase = "bsod";
+      const bsodAudio = new Audio("/sounds/windows-xp-critical-stop.wav");
+      bsodAudio.volume = 0.6;
+      bsodAudio.play().catch(() => {});
+      overlay.style.background = "#0000aa";
+      overlay.innerHTML = `
+        <div style="padding:44px 52px;font-family:'Lucida Console','Courier New',monospace;font-size:14px;color:#fff;line-height:1.85;animation:xpFadeIn .08s ease;">
+          <div style="background:#aaa;color:#000;display:inline-block;padding:1px 8px;margin-bottom:26px;font-size:14px;">Windows</div>
+          <p style="margin-bottom:18px;">${t("xp_bsod_title")}</p>
+          <p style="margin-bottom:18px;">${t("xp_bsod_hint")}</p>
+          <p style="margin-bottom:5px;">${t("xp_bsod_check1")}</p>
+          <p style="margin-bottom:22px;">${t("xp_bsod_check2")}</p>
+          <p style="margin-bottom:5px;">Technical information:</p>
+          <p style="margin-bottom:3px;">*** STOP: 0x0000007E (0xC0000005, 0xF748E0BF, 0xF78DA208, 0xF78D9F08)</p>
+          <p style="color:#bbb;margin-bottom:3px;">*** win32k.sys - Address F748E0BF base at F7450000, DateStamp 45f01f82</p>
+          <p style="margin-top:36px;color:#ccc;animation:xpBlink 1s infinite;">${t("xp_bsod_key")}</p>
+        </div>`;
+      setTimeout(dismiss, 6000);
+    };
+
+    // ── WELCOME SCREEN ───────────────────────────────────────────────────────
+    const showWelcome = (audio: HTMLAudioElement) => {
+      if (dismissed) return;
+      phase = "welcome";
+      audio.play().catch(() => {});
+      const timeStr = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+      overlay.style.background = "";
+      overlay.innerHTML = `
+        <div style="width:100%;height:100%;background:linear-gradient(180deg,#164f90 0%,#2070c8 25%,#2272cc 75%,#1a5faa 100%);display:flex;flex-direction:column;animation:xpFadeIn .9s ease;">
+          <div style="background:linear-gradient(180deg,#154e90,#1e6abf);padding:13px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(255,255,255,.12);">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="width:40px;height:40px;background:conic-gradient(#f33 0deg 90deg,#3a3 90deg 180deg,#33f 180deg 270deg,#fa3 270deg 360deg);border-radius:4px;"></div>
+              <span style="font-family:Tahoma,sans-serif;font-size:30px;font-weight:bold;color:#fff;text-shadow:1px 2px 4px rgba(0,0,0,.4);">Windows XP</span>
+            </div>
+            <span style="font-family:Tahoma,sans-serif;font-size:13px;color:#b8d8ff;">${timeStr}</span>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;">
+            <p style="font-family:Tahoma,sans-serif;font-size:16px;color:#cce5ff;letter-spacing:.5px;text-shadow:0 1px 3px rgba(0,0,0,.4);">${t("xp_login_click")}</p>
+            <div id="xp-user-btn" style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:18px 32px;border-radius:10px;cursor:pointer;border:1px solid rgba(255,255,255,.15);transition:background .15s;">
+              <div style="width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,#60c4f4,#0277bd);display:flex;align-items:center;justify-content:center;border:3px solid rgba(255,255,255,.65);font-family:Tahoma,sans-serif;font-size:30px;color:#fff;font-weight:bold;box-shadow:0 4px 18px rgba(0,0,0,.35);">C</div>
+              <span style="font-family:Tahoma,sans-serif;font-size:16px;color:#fff;font-weight:bold;text-shadow:1px 1px 3px rgba(0,0,0,.4);">${t("xp_login_user")}</span>
+            </div>
+          </div>
+          <div style="background:linear-gradient(180deg,#154e90,#185298);padding:10px 28px;display:flex;justify-content:space-between;align-items:center;border-top:2px solid rgba(255,255,255,.12);">
+            <span style="font-family:Tahoma,sans-serif;font-size:11px;color:#b8d8ff;">Pour vous connecter, cliquez sur votre nom d'utilisateur</span>
+            <span style="font-family:Tahoma,sans-serif;font-size:11px;color:#b8d8ff;cursor:pointer;">Désactiver l'ordinateur</span>
+          </div>
+        </div>`;
+
+      const userBtn = document.getElementById("xp-user-btn");
+      if (userBtn) {
+        userBtn.addEventListener("mouseenter", () => { userBtn.style.background = "rgba(255,255,255,.18)"; });
+        userBtn.addEventListener("mouseleave", () => { userBtn.style.background = ""; });
+        userBtn.addEventListener("click", (e) => { e.stopPropagation(); showDesktop(); });
       }
-      
-      if (currentPercent >= 100) {
-        // Success!
-        clearInterval(interval);
-        progressBar.style.width = "100%";
-        percentText.textContent = "100%";
-        loadingDots.style.display = "none";
-        statusText.textContent = "✓ Bienvenue dans Windows XP !";
-        statusText.style.color = "#4ade80";
-        
-        setTimeout(() => {
-          const shutdownAudio = new Audio("/sounds/windows-xp-shutdown.wav");
-          shutdownAudio.volume = 0.5;
-          shutdownAudio.play();
-          modal.remove();
-          style.remove();
-        }, 2000);
-        return;
-      }
-      
-      progressBar.style.width = currentPercent + "%";
-      percentText.textContent = currentPercent + "%";
-      statusText.textContent = messages[Math.floor(currentPercent / 15) % messages.length];
-    }, 80);
-    
-    modal.onclick = () => {
-      if (!crashed) {
-        clearInterval(interval);
-        startupAudio.pause();
-        const shutdownAudio = new Audio("/sounds/windows-xp-shutdown.wav");
-        shutdownAudio.volume = 0.5;
-        shutdownAudio.play();
-      }
-      modal.remove();
-      style.remove();
+    };
+
+    // ── DESKTOP ──────────────────────────────────────────────────────────────
+    const showDesktop = () => {
+      if (dismissed) return;
+      phase = "desktop";
+      const timeStr = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+      overlay.innerHTML = `
+        <div style="width:100%;height:100%;background:linear-gradient(180deg,#5294c8 0%,#82bcdf 32%,#90cc72 64%,#59a025 100%);position:relative;overflow:hidden;animation:xpPop .45s ease;">
+          <div style="position:absolute;bottom:48px;left:-8%;right:-8%;height:48%;background:radial-gradient(ellipse 130% 65% at 50% 100%,#78b83a 0%,#5ea028 45%,#4a8820 100%);border-radius:52% 58% 0 0/30% 28% 0 0;"></div>
+          <div style="position:absolute;top:14px;left:12px;display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:3px;width:70px;">
+              <div style="font-size:32px;">🖥️</div>
+              <span style="font-family:Tahoma,sans-serif;font-size:11px;color:#fff;text-shadow:1px 1px 3px rgba(0,0,0,.85);text-align:center;line-height:1.3;">Poste de<br>travail</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:3px;width:70px;">
+              <div style="font-size:32px;">🌐</div>
+              <span style="font-family:Tahoma,sans-serif;font-size:11px;color:#fff;text-shadow:1px 1px 3px rgba(0,0,0,.85);text-align:center;">Portfolio</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:3px;width:70px;">
+              <div style="font-size:32px;">🗑️</div>
+              <span style="font-family:Tahoma,sans-serif;font-size:11px;color:#fff;text-shadow:1px 1px 3px rgba(0,0,0,.85);text-align:center;">Corbeille</span>
+            </div>
+          </div>
+          <div style="position:absolute;top:50%;left:50%;animation:xpSlideUp .35s ease .1s both;background:#ece9d8;border:2px solid #777;border-radius:5px;box-shadow:4px 4px 18px rgba(0,0,0,.45);min-width:268px;overflow:hidden;">
+            <div style="background:linear-gradient(180deg,#2b7fd9,#1e6ec8);padding:5px 8px;display:flex;align-items:center;justify-content:space-between;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:15px;height:15px;background:conic-gradient(#f33 0deg 90deg,#3a3 90deg 180deg,#33f 180deg 270deg,#fa3 270deg 360deg);border-radius:2px;"></div>
+                <span style="font-family:Tahoma,sans-serif;font-size:12px;color:#fff;font-weight:bold;">Windows XP</span>
+              </div>
+              <div id="xp-close-x" style="width:17px;height:17px;background:linear-gradient(180deg,#f88,#c00);border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:Tahoma,sans-serif;font-size:10px;color:#fff;font-weight:bold;cursor:pointer;border:1px solid #900;">✕</div>
+            </div>
+            <div style="padding:22px 26px;text-align:center;">
+              <div style="font-size:38px;margin-bottom:9px;">🎉</div>
+              <div style="font-family:Tahoma,sans-serif;font-size:17px;font-weight:bold;color:#003399;margin-bottom:5px;">${t("xp_welcome")}</div>
+              <div style="font-family:Tahoma,sans-serif;font-size:12px;color:#555;margin-bottom:18px;">${t("xp_login_user")}</div>
+              <div id="xp-ok-btn" style="background:linear-gradient(180deg,#f0ece0,#d4d0c8);border:1px solid #7b7b7b;border-radius:3px;padding:5px 26px;display:inline-block;cursor:pointer;font-family:Tahoma,sans-serif;font-size:12px;box-shadow:1px 1px 3px rgba(0,0,0,.2);">OK</div>
+            </div>
+          </div>
+          <div style="position:absolute;bottom:0;left:0;right:0;height:48px;background:linear-gradient(180deg,#2878cc 0%,#1d6abf 40%,#185aaa 60%,#1e6abf 100%);display:flex;align-items:center;border-top:2px solid #3b90d8;box-shadow:0 -2px 6px rgba(0,0,0,.25);">
+            <div style="height:50px;padding:0 18px 0 10px;background:linear-gradient(180deg,#5ebc36,#3ea01e 40%,#308a14,#4caa28 100%);border-radius:0 26px 26px 0;display:flex;align-items:center;gap:9px;cursor:pointer;box-shadow:2px 0 8px rgba(0,0,0,.3);">
+              <div style="width:22px;height:22px;background:conic-gradient(#f33 0deg 90deg,#3a3 90deg 180deg,#33f 180deg 270deg,#fa3 270deg 360deg);border-radius:3px;"></div>
+              <span style="font-family:Tahoma,sans-serif;font-size:14px;color:#fff;font-weight:bold;font-style:italic;text-shadow:1px 1px 3px rgba(0,0,0,.4);">démarrer</span>
+            </div>
+            <div style="width:1px;height:34px;background:rgba(255,255,255,.2);margin:0 6px;"></div>
+            <div style="background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.18);border-radius:3px;padding:4px 11px;display:flex;align-items:center;gap:6px;font-family:Tahoma,sans-serif;font-size:11px;color:#fff;">
+              <span>🌐</span><span>Portfolio — Corentin</span>
+            </div>
+            <div style="flex:1;"></div>
+            <div style="display:flex;align-items:center;gap:8px;background:rgba(0,0,40,.32);padding:5px 12px;margin:4px;border:1px solid rgba(255,255,255,.1);border-radius:3px;">
+              <span style="font-size:13px;">🔊</span>
+              <span style="font-size:13px;">📶</span>
+              <span style="font-family:Tahoma,sans-serif;font-size:11px;color:#fff;">${timeStr}</span>
+            </div>
+          </div>
+        </div>`;
+
+      const okBtn = document.getElementById("xp-ok-btn");
+      const closeX = document.getElementById("xp-close-x");
+      if (okBtn) okBtn.addEventListener("click", (e) => { e.stopPropagation(); dismiss(); });
+      if (closeX) closeX.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const dlg = closeX.closest("div[style*='xpSlideUp']") as HTMLElement | null
+          ?? closeX.parentElement?.parentElement?.parentElement as HTMLElement | null;
+        if (dlg) dlg.style.display = "none";
+      });
+      setTimeout(dismiss, 9000);
     };
   },
 
-  // Thanos Snap - Disintegration effect
-  thanos: () => {
+  // Thanos Snap — multi-phase cinematic disintegration
+  thanos: (t: (key: string) => string) => {
+    // Capture visible page elements before any mutation
+    const pageElements = Array.from(
+      document.querySelectorAll<HTMLElement>("h1,h2,h3,h4,p,img,section,nav,footer,header,article,li,a,button")
+    ).filter((el) => {
+      const r = el.getBoundingClientRect();
+      return r.width > 0 && r.height > 0 && r.top < window.innerHeight && r.bottom > 0 && !el.closest("#thanos-ui");
+    });
+
+    // Sort left-to-right for the restoration wave
+    const sortedForRestore = [...pageElements].sort((a, b) => {
+      const ra = a.getBoundingClientRect();
+      const rb = b.getBoundingClientRect();
+      return ra.left - rb.left + (ra.top - rb.top) * 0.25;
+    });
+
+    // ── STYLES ───────────────────────────────────────────────────────────────
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes thanosGauntlet { 0%{transform:scale(0) rotate(-40deg);opacity:0} 65%{transform:scale(1.18) rotate(6deg);opacity:1} 100%{transform:scale(1) rotate(0);opacity:1} }
+      @keyframes thanosQuote    { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+      @keyframes thanosFlash    { 0%{opacity:0} 20%{opacity:1} 100%{opacity:0} }
+      @keyframes thanosShake    { 0%,100%{transform:translate(0,0)} 15%{transform:translate(-5px,-3px)} 30%{transform:translate(5px,3px)} 45%{transform:translate(-4px,4px)} 60%{transform:translate(4px,-2px)} 75%{transform:translate(-2px,3px)} 90%{transform:translate(2px,-2px)} }
+      @keyframes thanosIronman  { from{opacity:0;transform:translateY(18px) scale(.92)} to{opacity:1;transform:translateY(0) scale(1)} }
+      @keyframes thanosStoneGlow{ 0%,100%{filter:brightness(1)} 50%{filter:brightness(1.6)} }
+    `;
+    document.head.appendChild(style);
+
+    // ── CANVAS ────────────────────────────────────────────────────────────────
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d")!;
-    canvas.style.cssText = `position: fixed; inset: 0; z-index: 99998; pointer-events: none;`;
+    canvas.id = "thanos-ui";
+    canvas.style.cssText = `position:fixed;inset:0;z-index:99999;pointer-events:none;`;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     document.body.appendChild(canvas);
 
-    // Overlay to hide original content progressively
-    const overlay = document.createElement("div");
-    overlay.style.cssText = `position: fixed; inset: 0; z-index: 99997; background: var(--background, #fafaf9); opacity: 0; transition: opacity 1s ease;`;
-    document.body.appendChild(overlay);
+    // ── PRE-SNAP OVERLAY ──────────────────────────────────────────────────────
+    const preOverlay = document.createElement("div");
+    preOverlay.id = "thanos-ui";
+    preOverlay.style.cssText = `
+      position:fixed;inset:0;z-index:99998;
+      background:rgba(0,0,0,.88);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+      pointer-events:none; opacity:0; transition:opacity .35s ease;
+    `;
+    preOverlay.innerHTML = `
+      <div style="display:flex;gap:12px;animation:thanosGauntlet .9s cubic-bezier(.17,.67,.35,1.3) .5s both;">
+        <span style="font-size:88px;filter:drop-shadow(0 0 32px rgba(255,160,0,.85));">✊</span>
+      </div>
+      <div style="display:flex;gap:10px;animation:thanosQuote .5s ease 1.3s both;">
+        <span style="display:inline-block;width:13px;height:13px;border-radius:50%;background:#4db8ff;animation:thanosStoneGlow 1.5s infinite 0s;"></span>
+        <span style="display:inline-block;width:13px;height:13px;border-radius:50%;background:#ff4444;animation:thanosStoneGlow 1.5s infinite .25s;"></span>
+        <span style="display:inline-block;width:13px;height:13px;border-radius:50%;background:#f5a623;animation:thanosStoneGlow 1.5s infinite .5s;"></span>
+        <span style="display:inline-block;width:13px;height:13px;border-radius:50%;background:#a855f7;animation:thanosStoneGlow 1.5s infinite .75s;"></span>
+        <span style="display:inline-block;width:13px;height:13px;border-radius:50%;background:#22c55e;animation:thanosStoneGlow 1.5s infinite 1s;"></span>
+        <span style="display:inline-block;width:13px;height:13px;border-radius:50%;background:#f59e0b;animation:thanosStoneGlow 1.5s infinite 1.25s;"></span>
+      </div>
+      <p style="font-family:Georgia,'Times New Roman',serif;font-size:22px;color:rgba(255,228,150,.95);text-align:center;max-width:440px;line-height:1.7;text-shadow:0 2px 20px rgba(0,0,0,1);padding:0 28px;animation:thanosQuote .6s ease 1.8s both;">${t("thanos_quote")}</p>
+    `;
+    document.body.appendChild(preOverlay);
+    setTimeout(() => { preOverlay.style.opacity = "1"; }, 10);
 
-    interface Particle {
-      x: number;
-      y: number;
-      size: number;
-      color: string;
-      vx: number;
-      vy: number;
-      life: number;
-      decay: number;
-    }
+    // ── SNAP (after 2.6s) ─────────────────────────────────────────────────────
+    interface Pt { x:number;y:number;vx:number;vy:number;size:number;color:string;life:number;decay:number;rot:number;rv:number; }
+    const particles: Pt[] = [];
+    const MCU_COLORS = ["#d4a017","#e8b84b","#c0392b","#922b21","#a855f7","#7c3aed","#888","#aaa","#ccc","#fff","#f59e0b","#78350f"];
+    let animRunning = false;
 
-    const particles: Particle[] = [];
-    const colors = ["#a8a29e", "#78716c", "#57534e", "#44403c", "#292524", "#1c1917", "#fafaf9", "#f5f5f4"];
-    
-    // Get text elements and their positions
-    const textElements = document.querySelectorAll("h1, h2, h3, h4, p, span, a, button, li");
-    const rects: DOMRect[] = [];
-    
-    textElements.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      if (rect.width > 0 && rect.height > 0 && rect.top < window.innerHeight && rect.bottom > 0) {
-        rects.push(rect);
-      }
-    });
-
-    // Create particles from text positions
-    let particleIndex = 0;
-    const createParticles = () => {
-      rects.forEach((rect) => {
-        const density = Math.min(rect.width * rect.height / 50, 100);
-        for (let i = 0; i < density; i++) {
-          if (Math.random() > 0.3) continue;
-          particles.push({
-            x: rect.left + Math.random() * rect.width,
-            y: rect.top + Math.random() * rect.height,
-            size: Math.random() * 3 + 1,
-            color: colors[Math.floor(Math.random() * colors.length)],
-            vx: (Math.random() - 0.5) * 4,
-            vy: -Math.random() * 6 - 2,
-            life: 1,
-            decay: Math.random() * 0.01 + 0.005,
-          });
-        }
-      });
-      particleIndex++;
-      if (particleIndex < 20) {
-        setTimeout(createParticles, 100);
+    const spawnWave = (waveX: number, count: number) => {
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: waveX + (Math.random() - 0.5) * 240,
+          y: Math.random() * window.innerHeight,
+          vx: Math.random() * 5.5 + 1.5,
+          vy: (Math.random() - 0.45) * 3.5,
+          size: Math.random() * 6 + 0.8,
+          color: MCU_COLORS[Math.floor(Math.random() * MCU_COLORS.length)],
+          life: 0.9 + Math.random() * 0.1,
+          decay: Math.random() * 0.006 + 0.003,
+          rot: Math.random() * Math.PI * 2,
+          rv: (Math.random() - 0.5) * 0.18,
+        });
       }
     };
 
-    // Start disintegration
-    setTimeout(() => {
-      overlay.style.opacity = "1";
-      createParticles();
-    }, 200);
-
-    // Animation loop
-    let running = true;
-    const animate = () => {
-      if (!running) return;
+    const animateParticles = () => {
+      if (!animRunning) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
         p.x += p.vx;
-        p.vy -= 0.1; // gravity upward (floating away)
+        p.vy += (Math.random() - 0.48) * 0.12;
         p.y += p.vy;
         p.life -= p.decay;
-        
-        if (p.life <= 0 || p.y < -50) {
-          particles.splice(i, 1);
-          continue;
-        }
-        
-        ctx.globalAlpha = p.life;
+        p.rot += p.rv;
+        if (p.life <= 0 || p.x > canvas.width + 60) { particles.splice(i, 1); continue; }
+        ctx.save();
+        ctx.globalAlpha = Math.min(p.life, 0.95);
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
         ctx.fillStyle = p.color;
-        ctx.fillRect(p.x, p.y, p.size, p.size);
+        if (p.size < 2.5) {
+          ctx.beginPath();
+          ctx.arc(0, 0, p.size * 0.5, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.fillRect(-p.size * 0.5, -p.size * 0.5, p.size, p.size);
+        }
+        ctx.restore();
       }
-      
-      requestAnimationFrame(animate);
+      requestAnimationFrame(animateParticles);
     };
-    animate();
 
-    // Cleanup after animation
     setTimeout(() => {
-      running = false;
-      canvas.remove();
-      overlay.remove();
-    }, 5000);
+      preOverlay.style.background = "rgba(0,0,0,0)";
+      preOverlay.style.transition = "background .4s";
+
+      // White flash
+      const flash = document.createElement("div");
+      flash.style.cssText = `position:fixed;inset:0;z-index:999999;background:#fff;pointer-events:none;animation:thanosFlash .5s ease forwards;`;
+      document.body.appendChild(flash);
+      setTimeout(() => flash.remove(), 500);
+
+      // Body shake
+      document.body.style.animation = "thanosShake .55s ease";
+      setTimeout(() => { document.body.style.animation = ""; }, 560);
+
+      // DOM disintegration: right-to-left wave (rightmost elements vanish first)
+      const sorted = [...pageElements].sort((a, b) => {
+        const ra = a.getBoundingClientRect();
+        const rb = b.getBoundingClientRect();
+        return (rb.left + rb.width * 0.5) - (ra.left + ra.width * 0.5);
+      });
+      sorted.forEach((el, idx) => {
+        const delay = idx * 28 + Math.random() * 60;
+        const dx = 40 + Math.random() * 80;
+        const dy = (Math.random() - 0.5) * 30;
+        const dr = (Math.random() - 0.5) * 6;
+        setTimeout(() => {
+          el.style.transition = `opacity 1.1s ease, transform 1.4s ease, filter 1.3s ease`;
+          el.style.opacity = "0";
+          el.style.transform = `translateX(${dx}px) translateY(${dy}px) rotate(${dr}deg)`;
+          el.style.filter = "blur(4px)";
+        }, delay);
+      });
+
+      // Spawn particle waves sweeping left-to-right
+      animRunning = true;
+      animateParticles();
+      let wave = 0; const totalWaves = 32;
+      const nextWave = () => {
+        if (wave >= totalWaves) return;
+        const x = window.innerWidth * (1 - wave / totalWaves);
+        spawnWave(x, 160);
+        wave++;
+        setTimeout(nextWave, 90);
+      };
+      nextWave();
+
+      // ── IRONMAN QUOTE + RESTORATION ─────────────────────────────────────────
+      setTimeout(() => {
+        animRunning = false;
+        canvas.remove();
+        preOverlay.remove();
+
+        const ironman = document.createElement("div");
+        ironman.style.cssText = `
+          position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
+          background:rgba(0,0,0,.72);pointer-events:none;
+          animation:thanosIronman .65s ease both;
+        `;
+        ironman.innerHTML = `<span style="font-family:Georgia,'Times New Roman',serif;font-size:34px;color:#e5a823;letter-spacing:.04em;text-shadow:0 0 60px rgba(229,168,35,.9),0 0 24px rgba(229,168,35,.6),0 2px 8px rgba(0,0,0,1);">${t("thanos_ironman")}</span>`;
+        document.body.appendChild(ironman);
+
+        // Restore elements left-to-right
+        sortedForRestore.forEach((el, idx) => {
+          const delay = idx * 12;
+          setTimeout(() => {
+            el.style.transition = `opacity 1s ease, transform 1s ease, filter 1s ease`;
+            el.style.opacity = "";
+            el.style.transform = "";
+            el.style.filter = "";
+            setTimeout(() => { el.style.transition = ""; }, 1100);
+          }, delay);
+        });
+
+        setTimeout(() => {
+          ironman.style.transition = "opacity .5s ease";
+          ironman.style.opacity = "0";
+          setTimeout(() => { ironman.remove(); style.remove(); }, 520);
+        }, 2800);
+      }, 5200);
+    }, 2600);
   },
 };
 
@@ -770,11 +1026,11 @@ export function CommandMenu() {
         </Command.Group>
 
         <Command.Group heading="Easter Eggs" className="text-stone-500 dark:text-stone-400 text-xs font-medium px-2 py-1.5 mb-1 mt-2 select-none">
-          <CommandItem onSelect={() => runCommand(() => easterEggs.hackerMode())}>
+          <CommandItem onSelect={() => runCommand(() => easterEggs.hackerMode(t))}>
             <Terminal className="mr-2 h-4 w-4" />
             <span>sudo hire me</span>
           </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => easterEggs.coffee())}>
+          <CommandItem onSelect={() => runCommand(() => easterEggs.coffee(t))}>
             <Coffee className="mr-2 h-4 w-4" />
             <span>coffee</span>
           </CommandItem>
@@ -786,15 +1042,11 @@ export function CommandMenu() {
             <Tv className="mr-2 h-4 w-4" />
             <span>retro</span>
           </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => easterEggs.nyanCat())}>
-            <Cat className="mr-2 h-4 w-4" />
-            <span>nyan</span>
-          </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => easterEggs.whoami())}>
+          <CommandItem onSelect={() => runCommand(() => easterEggs.whoami(t))}>
             <User className="mr-2 h-4 w-4" />
             <span>whoami</span>
           </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => easterEggs.credits())}>
+          <CommandItem onSelect={() => runCommand(() => easterEggs.credits(t))}>
             <Film className="mr-2 h-4 w-4" />
             <span>credits</span>
           </CommandItem>
@@ -802,11 +1054,11 @@ export function CommandMenu() {
             <Globe className="mr-2 h-4 w-4" />
             <span>hello</span>
           </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => easterEggs.xpSound())}>
+          <CommandItem onSelect={() => runCommand(() => easterEggs.xpSound(t))}>
             <Monitor className="mr-2 h-4 w-4" />
             <span>xp</span>
           </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => easterEggs.thanos())}>
+          <CommandItem onSelect={() => runCommand(() => easterEggs.thanos(t))}>
             <Sparkles className="mr-2 h-4 w-4" />
             <span>thanos</span>
           </CommandItem>

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { ExternalLink, Github } from "lucide-react";
 import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 
@@ -11,8 +12,6 @@ const projectsFallback = [
     key: "arcom_desc",
     tags: ["Python", "Django", "Vue.js", "Docker", "CI/CD", "PostgreSQL"],
     image: "/images/project-arcom.jpg",
-    link: "https://github.com/C0X23/Arcom",
-    github: "https://github.com/C0X23/Arcom"
   },
   {
     title: "Portfolio — cmegret.dev",
@@ -21,7 +20,7 @@ const projectsFallback = [
     image: "/images/project-portfolio.png",
     link: "https://cmegret.dev/en",
     demo: "https://cmegret.dev/en",
-    github: "https://github.com/C0X23"
+    github: "https://github.com/C0X23/Portfolio"
   },
   {
     title: "Minishell",
@@ -164,28 +163,28 @@ function ProjectCard({ project, t }: { project: Project; t: ReturnType<typeof us
           {project.description}
         </p>
 
-        {/* Boutons masqués pour le moment
         <div className="flex items-center gap-4">
-          <a 
-            href={project.link} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="flex items-center text-sm font-medium text-stone-900 dark:text-stone-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors z-20 cursor-pointer"
-            onPointerDown={(e) => e.stopPropagation()}
-          >
-            <ExternalLink className="w-4 h-4 mr-2" /> {t("demo")}
-          </a>
-          <a 
-            href={project.github} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="flex items-center text-sm font-medium text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors z-20 cursor-pointer"
-            onPointerDown={(e) => e.stopPropagation()}
-          >
-            <Github className="w-4 h-4 mr-2" /> {t("code")}
-          </a>
+          {project.demo && (
+            <a 
+              href={project.demo} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center text-sm font-medium text-stone-900 dark:text-stone-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer"
+            >
+              <ExternalLink className="w-4 h-4 mr-2" /> {t("demo")}
+            </a>
+          )}
+          {project.github && (
+            <a 
+              href={project.github} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center text-sm font-medium text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors cursor-pointer"
+            >
+              <Github className="w-4 h-4 mr-2" /> {t("code")}
+            </a>
+          )}
         </div>
-        */}
       </div>
     </motion.div>
   );
