@@ -40,9 +40,9 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8 pt-8 border-t border-stone-200 dark:border-stone-800">
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-8 pt-8 border-t border-stone-200 dark:border-stone-800">
           
-          <div className="text-center md:text-left">
+          <div className="flex-1 text-center lg:text-left">
             <h3 className="text-2xl font-bold tracking-tighter text-stone-900 dark:text-stone-50 mb-2">CORENTIN</h3>
             <p className="text-stone-500 dark:text-stone-400 text-sm">
               {t("role")}
@@ -55,7 +55,7 @@ export async function Footer() {
             <FooterLink href="mailto:megret.corentin@gmail.com" icon={<Mail className="w-5 h-5" />} label="Email" />
           </div>
 
-          <div className="text-stone-500 dark:text-stone-400 text-sm flex flex-col items-center md:items-end">
+          <div className="flex-1 text-stone-500 dark:text-stone-400 text-sm flex flex-col items-center lg:items-end">
             <p>&copy; {currentYear} Corentin Megret.</p>
             <p className="text-xs mt-1 text-stone-400 dark:text-stone-500">{t("rights")}</p>
           </div>

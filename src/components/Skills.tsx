@@ -4,16 +4,16 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 const skills = [
-  { key: "cpp", level: 95 },
-  { key: "python", level: 95 },
-  { key: "linux", level: 85 },
-  { key: "sql", level: 80 },
-  { key: "git", level: 90 },
-  { key: "docker", level: 75 },
   { key: "web", level: 90 },
-  { key: "react", level: 85 },
-  { key: "nextjs", level: 80 },
   { key: "typescript", level: 85 },
+  { key: "vue", level: 85 },
+  { key: "nextjs", level: 80 },
+  { key: "git", level: 90 },
+  { key: "docker", level: 80 },
+  { key: "python", level: 95 },
+  { key: "sql", level: 80 },
+  { key: "linux", level: 85 },
+  { key: "cpp", level: 95 },
 ];
 
 export function Skills() {

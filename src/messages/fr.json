@@ -1,8 +1,8 @@
 {
   "Hero": {
     "subtitle": "CORENTIN M.",
-    "title": "Développeur <br /> Full Stack",
-    "description": "Spécialisé dans le développement web et système. Je conçois des solutions performantes et robustes, du noyau au cloud.",
+    "title": "Ingénieur Frontend avec <br /> Expérience Full-Stack & DevOps",
+    "description": "Je construis des applications web responsives prêtes pour la production, et contribue sur le frontend, le backend, les déploiements Docker et les pipelines CI/CD.",
     "cta": "Voir mes projets"
   },
   "Navigation": {
@@ -14,8 +14,8 @@
   },
   "About": {
     "title": "À Propos de moi",
-    "description1": "Ingénieur Logiciel Full Stack et ancien étudiant de l'École 42, je conçois des systèmes performants et des solutions web complètes.",
-    "description2": "Mon expertise s'étend de la programmation système bas niveau (C, C++, Unix, Bash) aux architectures web modernes (Python, Django, Docker). J'accorde une importance capitale à la qualité du code, à la performance et à l'automatisation des déploiements.",
+    "description1": "Ingénieur logiciel full-stack avec une expérience de production concrète, je construis des applications web de l'interface au déploiement, avec un fort accent sur l'intégration frontend, les APIs, la performance et l'automatisation.",
+    "description2": "Mon travail couvre les interfaces Vue.js & Django, l'optimisation PostgreSQL & Redis, la conteneurisation Docker et les pipelines CI/CD avec GitHub Actions. Mon background en programmation système C/C++ (École 42) me donne une base solide en algorithmique, mémoire et performance.",
     "yearsEx": "Années d'Exp.",
     "repos": "Repos GitHub"
   },
@@ -36,8 +36,9 @@
   },
   "Projects": {
     "title": "Projets Récents",
-    "subtitle": "Une sélection de mes travaux les plus ambitieux, alliant technique et esthétique.",
-    "arcom_desc": "Développement et maintenance depuis 2 ans d'une solution complète de gestion SAV. Optimisation des flux logistiques et interface administrative.",
+    "subtitle": "Des applications web en production aux défis d'ingénierie — chaque projet reflète une ownership complète, une architecture propre et un déploiement réel.",
+    "arcom_desc": "Développement full-stack et ownership long terme d'une plateforme de gestion SAV en production. Backend Django REST, frontend Vue.js, PostgreSQL, conteneurisation Docker et pipeline CI/CD GitHub Actions. Automatisation des processus et interfaces d'administration avec gestion des rôles.",
+    "portfolio_desc": "Portfolio personnel construit avec Next.js 15, TypeScript, Tailwind CSS et Framer Motion. Dark mode, i18n (FR/EN), smooth scroll, optimisation SEO et déploiement en production sur Vercel.",
     "minishell_desc": "Réimplémentation fidèle d'un Shell Unix (Bash). Gestion avancée des processus, redirections, pipes et signaux.",
     "cub3d_desc": "Moteur de rendu 3D style Wolfenstein 3D créé from scratch en C. Gestion de la physique, textures et raycasting.",
     "philosophers_desc": "Simulation du problème des philosophes. Gestion complexe de la concurrence, threads, mutex et prévention des deadlocks.",
@@ -49,17 +50,17 @@
     "cpp": "C / C++ / Algorithmique",
     "python": "Python / Django",
     "linux": "Linux / Unix / Bash",
-    "sql": "SQL / Bases de données",
     "git": "Git / GitHub / CI/CD",
     "docker": "Docker / DevOps",
     "web": "HTML / CSS / JavaScript",
-    "react": "React / Framer Motion",
+    "vue": "Vue.js / React / Framer Motion",
     "nextjs": "Next.js / Vercel",
-    "typescript": "TypeScript / Tailwind CSS"
+    "typescript": "TypeScript / Tailwind CSS",
+    "sql": "SQL / PostgreSQL / Redis"
   },
   "Contact": {
     "title": "Travaillons Ensemble",
-    "description": "Vous avez un projet en tête ? Je suis toujours à l'écoute de nouvelles opportunités de collaboration.",
+    "description": "Ouvert aux opportunités remote en frontend, full-stack ou avec une dimension DevOps. Vous avez un poste, une question ou simplement envie d'échanger — je serais ravi d'en discuter.",
     "location": "Suisse / France",
     "success_title": "Message envoyé !",
     "success_msg": "Merci de m'avoir contacté. Je vous répondrai dans les plus brefs délais.",
@@ -82,7 +83,7 @@
     }
   },
   "Footer": {
-    "role": "Ingénieur Logiciel Full Stack.",
+    "role": "Ingénieur Frontend & Développeur Full-Stack.",
     "rights": "Tous droits réservés.",
     "built_with": "Créé avec"
   },
@@ -99,7 +100,7 @@
     "en": "Anglais"
   },
   "Metadata": {
-    "title": "Corentin | Développeur Full Stack",
-    "description": "Spécialisé dans le développement web et système."
+    "title": "Corentin Megret | Ingénieur Frontend — Vue.js, React & DevOps",
+    "description": "Ingénieur Frontend avec expérience Full-Stack & DevOps. Vue.js, React, TypeScript, Python/Django, Docker, CI/CD, PostgreSQL et applications web en production."
   }
 }

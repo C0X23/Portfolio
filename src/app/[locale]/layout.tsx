@@ -27,7 +27,7 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
     metadataBase: new URL("https://cmegret.dev"),
     title: t('title'),
     description: t('description'),
-    keywords: ["Développeur Web", "Full Stack", "React", "Next.js", "TypeScript", "Système", "Cloud"],
+    keywords: ["Frontend Engineer", "Vue.js", "React", "TypeScript", "Docker", "DevOps", "CI/CD", "Next.js", "Full Stack Developer", "Junior Developer"],
     authors: [{ name: "Corentin Megret" }],
     appleWebApp: {
       title: "Corentin M.",

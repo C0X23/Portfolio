@@ -9,10 +9,19 @@ const projectsFallback = [
   {
     title: "Gestion SAV - Arcom",
     key: "arcom_desc",
-    tags: ["Python", "Django", "Web", "Automation", "SQL"],
+    tags: ["Python", "Django", "Vue.js", "Docker", "CI/CD", "PostgreSQL"],
     image: "/images/project-arcom.jpg",
     link: "https://github.com/C0X23/Arcom",
     github: "https://github.com/C0X23/Arcom"
+  },
+  {
+    title: "Portfolio — cmegret.dev",
+    key: "portfolio_desc",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "i18n"],
+    image: "/images/project-portfolio.png",
+    link: "https://cmegret.dev/en",
+    demo: "https://cmegret.dev/en",
+    github: "https://github.com/C0X23"
   },
   {
     title: "Minishell",

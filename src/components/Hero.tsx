@@ -18,7 +18,7 @@ export function Hero() {
         </div>
 
         <h1
-          className="animate-fade-in-up text-5xl md:text-8xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-stone-900 via-stone-700 to-stone-500 dark:from-stone-100 dark:via-stone-300 dark:to-stone-500 mb-6"
+          className="animate-fade-in-up text-5xl md:text-6xl lg:text-8xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-stone-900 via-stone-700 to-stone-500 dark:from-stone-100 dark:via-stone-300 dark:to-stone-500 mb-6"
           style={{ animationDelay: "100ms" }}
           dangerouslySetInnerHTML={{ __html: t.raw("title") }}
         />

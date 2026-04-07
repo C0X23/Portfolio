@@ -53,9 +53,9 @@ export function Navigation() {
           Corentin<span className="text-stone-500">.</span>
         </a>
 
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-4 lg:gap-8">
           <nav className="hidden md:block">
-            <ul className="flex items-center gap-8">
+            <ul className="flex items-center gap-4 lg:gap-8">
               <NavItem href="#about">{t("about")}</NavItem>
               <NavItem href="#timeline">{t("timeline")}</NavItem>
               <NavItem href="#projects">{t("projects")}</NavItem>
@@ -69,7 +69,7 @@ export function Navigation() {
             {/* Command Palette Hint */}
             <button
               onClick={openCommandMenu}
-              className="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-700 dark:hover:text-stone-300 transition-colors cursor-pointer"
+              className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-700 dark:hover:text-stone-300 transition-colors cursor-pointer"
               aria-label="Open command menu"
             >
               <Command className="w-3 h-3" />
@@ -99,7 +99,7 @@ function NavItem({
       <li>
         <a
           href={href}
-          className="px-5 py-2.5 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-950 rounded-full font-medium hover:bg-stone-800 dark:hover:bg-stone-200 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-stone-900/10 dark:shadow-none"
+          className="px-3 py-2 md:px-4 md:py-2 lg:px-5 lg:py-2.5 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-950 rounded-full font-medium text-sm hover:bg-stone-800 dark:hover:bg-stone-200 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-stone-900/10 dark:shadow-none"
         >
           {children}
         </a>

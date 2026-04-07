@@ -19,7 +19,7 @@ export function Contact() {
   return (
     <section id="contact" className="py-24 bg-stone-50 dark:bg-stone-950 relative border-t border-stone-200 dark:border-stone-800 transition-colors duration-300">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
