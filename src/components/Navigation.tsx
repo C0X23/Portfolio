@@ -5,7 +5,8 @@ import { cn } from "@/lib/utils";
 import { ModeToggle } from "./mode-toggle";
 import { LangToggle } from "./lang-toggle";
 import { useTranslations } from "next-intl";
-import { Command } from "lucide-react";
+import { Terminal } from "lucide-react";
+import { OPEN_COMMAND_MENU_EVENT } from "@/lib/command-menu-events";
 
 const subscribePlatform = () => () => {};
 const getPlatform = () => navigator.platform.toUpperCase().includes("MAC");
@@ -35,7 +36,7 @@ export function Navigation() {
   }, []);
 
   const openCommandMenu = () => {
-    document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true, ctrlKey: true }));
+    document.dispatchEvent(new CustomEvent(OPEN_COMMAND_MENU_EVENT));
   };
 
   return (
@@ -68,13 +69,15 @@ export function Navigation() {
           <div className="relative z-50 flex items-center gap-2">
             {/* Command Palette Hint */}
             <button
+              type="button"
               onClick={openCommandMenu}
-              className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-700 dark:hover:text-stone-300 transition-colors cursor-pointer"
-              aria-label="Open command menu"
+              className="flex md:hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-700 dark:hover:text-stone-300 transition-colors cursor-pointer"
+              aria-label={t("open_command_menu")}
+              aria-keyshortcuts={isMac ? "Meta+K" : "Control+K"}
             >
-              <Command className="w-3 h-3" />
-              <span className="font-medium">{isMac ? "⌘" : "Ctrl"}</span>
-              <span className="font-medium">K</span>
+              <Terminal className="h-4 w-4 lg:hidden" aria-hidden="true" />
+              <span className="hidden lg:inline font-medium" aria-hidden="true">{isMac ? "⌘" : "Ctrl"}</span>
+              <span className="hidden lg:inline font-medium" aria-hidden="true">K</span>
             </button>
             <ModeToggle />
             <LangToggle />
