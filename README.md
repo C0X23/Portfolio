@@ -1,220 +1,55 @@
-# 🚀 Portfolio - Corentin M.
+# Corentin Megret - Portfolio
 
-<p align="center">
-  <strong>Portfolio de développeur Full Stack</strong><br/>
-  Next.js 16 • TypeScript • Tailwind CSS • Framer Motion
-</p>
+Portfolio public de Corentin Megret, développeur back-end Python / Django.
 
-<p align="center">
-  <a href="https://cmegret.dev" target="_blank"><strong>🌐 cmegret.dev</strong></a>
-</p>
+Site : [cmegret.dev](https://cmegret.dev)
 
-<p align="center">
-  <a href="#-aperçu">Aperçu</a> •
-  <a href="#-stack-technique">Stack</a> •
-  <a href="#-fonctionnalités">Fonctionnalités</a> •
-  <a href="#-installation">Installation</a> •
-  <a href="#-structure">Structure</a>
-</p>
+Le contenu est disponible en français (`/fr`) et en anglais (`/en`). Il présente les applications métier, les API, les automatisations et le parcours à 42 Lausanne. Les codes des projets Arcom et Arven Distribution restent privés. La plateforme SAV Arcom est en production, sa PWA de scan est en test ; l’ERP Arven est en développement.
 
----
+## Stack du site
 
-## 📸 Aperçu
+Next.js 16, React 19, TypeScript, Tailwind CSS 4, Framer Motion, next-intl, next-themes, Lenis et cmdk. Le formulaire de contact utilise une Server Action, Zod et Resend. Le suivi technique utilise Sentry et les outils Vercel.
 
-Un portfolio moderne et performant présentant mes compétences, projets et parcours professionnel.
+Cette stack décrit le portfolio. Elle ne décrit pas la stack des projets métier présentés.
 
----
+## Développement
 
-## 🛠 Stack Technique
+Node.js 20.9 minimum, npm et une clé Resend pour l’envoi du formulaire.
 
-### Frontend
-
-| Technologie | Version | Description |
-|-------------|---------|-------------|
-| [Next.js](https://nextjs.org/) | 16.1 | Framework React avec App Router |
-| [React](https://react.dev/) | 19.2 | Bibliothèque UI |
-| [TypeScript](https://www.typescriptlang.org/) | 5.x | Typage statique |
-| [Tailwind CSS](https://tailwindcss.com/) | 4.x | Framework CSS utility-first |
-
-### Animations & UX
-
-| Technologie | Description |
-|-------------|-------------|
-| [Framer Motion](https://www.framer.com/motion/) | Animations fluides et gestures |
-| [Lenis](https://lenis.darkroom.engineering/) | Smooth scrolling |
-| [cmdk](https://cmdk.paco.me/) | Command palette (⌘K) |
-
-### Internationalisation
-
-| Technologie | Description |
-|-------------|-------------|
-| [next-intl](https://next-intl-docs.vercel.app/) | i18n pour Next.js App Router |
-| [country-flag-icons](https://www.npmjs.com/package/country-flag-icons) | Drapeaux SVG |
-
-### Outils & Qualité
-
-| Outil | Description |
-|-------|-------------|
-| [ESLint](https://eslint.org/) | Linting du code |
-| [Zod](https://zod.dev/) | Validation de schémas |
-| [Resend](https://resend.com/) | API d'envoi d'emails |
-
-### Icônes & Assets
-
-| Ressource | Description |
-|-----------|-------------|
-| [Lucide React](https://lucide.dev/) | Icônes modernes et légères |
-| [Geist Font](https://vercel.com/font) | Police officielle Vercel |
-
----
-
-## ✨ Fonctionnalités
-
-### 🎨 Design
-- **Mode Clair/Sombre** avec transition fluide
-- **Glassmorphism** et gradients modernes
-- **Responsive** : Mobile, Tablette, Desktop
-- **Curseur personnalisé** avec effet magnétique
-
-### 🌍 Internationalisation
-- Support **Français** 🇫🇷 et **Anglais** 🇬🇧
-- Sélecteur de langue avec drapeaux
-- URLs localisées (`/fr`, `/en`)
-
-### ⚡ Performance
-- **SSR/SSG** avec Next.js App Router
-- **Optimisation des images** automatique
-- **Lazy loading** des composants
-
-### 🔍 SEO
-- Métadonnées dynamiques par langue
-- `sitemap.xml` généré automatiquement
-- `robots.txt` configuré
-
-### 🎯 UX Avancée
-- **Command Palette** (Ctrl+K / ⌘K)
-- **Smooth Scroll** avec Lenis
-- **Animations au scroll** avec Framer Motion
-- **Formulaire de contact** avec validation Zod
-
----
-
-## 📦 Installation
-
-### Prérequis
-
-- Node.js 18+
-- npm ou yarn
-
-### Étapes
-
-```bash
-# Cloner le repository
-git clone https://github.com/C0X23/Portfolio.git
-cd Portfolio
-
-# Installer les dépendances
-npm install
-
-# Copier le fichier d'environnement
-cp .env.example .env
-
-# Lancer le serveur de développement
+```sh
+npm ci
+cp .env.example .env.local
 npm run dev
 ```
 
-Ouvrir [http://localhost:3000](http://localhost:3000) dans votre navigateur.
+Ne jamais versionner les fichiers d’environnement contenant des secrets.
 
-### Scripts disponibles
-
-| Commande | Description |
-|----------|-------------|
-| `npm run dev` | Serveur de développement |
-| `npm run build` | Build de production |
-| `npm run start` | Serveur de production |
-| `npm run lint` | Vérification ESLint |
-
----
-
-## 🗂 Structure
-
-```
-Portfolio/
-├── public/
-│   └── images/          # Images (portrait, projets)
-├── src/
-│   ├── app/
-│   │   ├── [locale]/    # Pages avec routing i18n
-│   │   ├── actions.ts   # Server Actions (contact form)
-│   │   └── globals.css  # Styles globaux
-│   ├── components/      # Composants React
-│   │   ├── Hero.tsx
-│   │   ├── About.tsx
-│   │   ├── Projects.tsx
-│   │   ├── Skills.tsx
-│   │   ├── Timeline.tsx
-│   │   ├── Contact.tsx
-│   │   ├── Navigation.tsx
-│   │   ├── command-menu.tsx
-│   │   ├── mouse-follower.tsx
-│   │   └── ...
-│   ├── i18n/            # Configuration i18n
-│   ├── lib/             # Utilitaires
-│   └── messages/        # Traductions (fr.json, en.json)
-├── .env.example         # Variables d'environnement (template)
-├── next.config.ts       # Configuration Next.js
-├── tailwind.config.ts   # Configuration Tailwind (si présent)
-└── tsconfig.json        # Configuration TypeScript
+```sh
+npm run lint
+npx tsc --noEmit
+npm run build
+npm run start
 ```
 
----
+## Contenu et visuel
 
-## 🎨 Personnalisation
+- Textes et métadonnées FR/EN : `src/messages/fr.json` et `src/messages/en.json`.
+- Projets et liens de code : `src/components/Projects.tsx`.
+- Expériences et formations : `src/components/Timeline.tsx`.
+- Références structurées : `src/components/json-ld.tsx`.
+- Aperçus de partage : `src/app/[locale]/opengraph-image.tsx` et `twitter-image.tsx`.
+- Images : `public/images/`.
 
-### Modifier les textes
+Le design existant est conservé : couleurs, typographie, mise en page, carrousel, curseur, animations, menu de commandes et thèmes clair/sombre.
 
-Les traductions sont dans `src/messages/` :
-- `fr.json` : Contenu français
-- `en.json` : Contenu anglais
+Les compétences distinguent pratique professionnelle, formation, notions et projet personnel. Les barres historiques sont décoratives ; elles ne sont pas des pourcentages de maîtrise.
 
-### Modifier les projets
+Le logo Arven provient des ressources officielles de la marque. Les documents de candidature ciblés et les coordonnées privées ne sont pas publiés sur le site.
 
-Éditer la section `Projects` dans les fichiers de traduction et ajouter les images correspondantes dans `public/images/`.
+## Publication
 
-### Modifier les couleurs
+Le site existant est hébergé sur Vercel et utilise le dépôt `C0X23/Portfolio`. Conserver le domaine et les routes `/fr` et `/en`. Les variables de production, notamment `RESEND_API_KEY` et celles de Sentry, se configurent sur l’hébergement ; elles ne doivent pas être ajoutées au dépôt.
 
-Le thème utilise la palette **Stone** de Tailwind CSS. Pour personnaliser, modifier les classes dans les composants ou `globals.css`.
-
----
-
-## 🚀 Déploiement
-
-### Vercel (Recommandé)
-
-1. Connectez votre repo GitHub à [Vercel](https://vercel.com)
-2. Vercel détecte automatiquement Next.js
-3. Configurez les variables d'environnement si nécessaire
-4. Déployez !
-
-### Variables d'environnement
-
-| Variable | Description |
-|----------|-------------|
-| `RESEND_API_KEY` | Clé API Resend pour le formulaire de contact |
-
----
-
-## 📄 Licence
+## Licence
 
 Ce projet est sous licence MIT.
-
----
-
-<p align="center">
-  Fait avec ❤️ par <strong>Corentin M.</strong>
-</p>
-
-### Modifier les images
-Remplacez les images dans le dossier `public/images/`. Veillez à conserver les noms de fichiers ou à mettre à jour les chemins dans les composants (`src/components/Projects.tsx` pour les projets).
-
----

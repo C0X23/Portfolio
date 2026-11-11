@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Languages } from "lucide-react";
 import { sendEmail, type ContactState } from "@/app/actions";
 import { useTranslations } from "next-intl";
 
@@ -34,7 +34,7 @@ export function Contact() {
 
             <div className="space-y-6">
               <ContactItem icon={<Mail className="w-6 h-6" />} text="megret.corentin@gmail.com" href="mailto:megret.corentin@gmail.com" />
-              <ContactItem icon={<Phone className="w-6 h-6" />} text="+33 6 16 43 76 44" href="tel:+33616437644" />
+              <ContactItem icon={<Languages className="w-6 h-6" />} text={t("languages")} />
               <ContactItem icon={<MapPin className="w-6 h-6" />} text={t("location")} />
             </div>
           </motion.div>

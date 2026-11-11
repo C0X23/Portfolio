@@ -8,22 +8,28 @@ import { useTranslations } from "next-intl";
 
 const projectsFallback = [
   {
-    title: "Gestion SAV - Arcom",
+    title: "arcom_title",
     key: "arcom_desc",
-    tags: ["Python", "Django", "Vue.js", "Docker", "CI/CD", "PostgreSQL"],
+    tags: ["Python", "Django", "PostgreSQL", "Redis", "OAuth 2.0"],
     image: "/images/project-arcom.jpg",
   },
   {
-    title: "Portfolio — cmegret.dev",
+    title: "arven_title",
+    key: "arven_desc",
+    tags: ["Python", "Django", "DRF", "PostgreSQL", "Celery", "Docker Compose"],
+    image: "/images/arven-logo.png",
+  },
+  {
+    title: "portfolio_title",
     key: "portfolio_desc",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "i18n"],
-    image: "/images/project-portfolio.png",
+    image: "/images/project-portfolio.jpg",
     link: "https://cmegret.dev/en",
     demo: "https://cmegret.dev/en",
     github: "https://github.com/C0X23/Portfolio"
   },
   {
-    title: "Minishell",
+    title: "minishell_title",
     key: "minishell_desc",
     tags: ["C", "System", "Unix", "Bash"],
     image: "/images/project-minishell.jpg",
@@ -31,20 +37,16 @@ const projectsFallback = [
     github: "https://github.com/C0X23/Minishell"
   },
   {
-    title: "Cub3D (Raycasting)",
+    title: "cub3d_title",
     key: "cub3d_desc",
     tags: ["C", "Graphics", "Maths", "Game Dev"],
     image: "/images/project-cub3d.jpg",
-    link: "https://github.com/C0X23/42-School-V2",
-    github: "https://github.com/C0X23/42-School-V2"
   },
   {
-    title: "Philosophers",
+    title: "philosophers_title",
     key: "philosophers_desc",
     tags: ["C", "Threads", "Concurrency", "Algorithm"],
     image: "/images/project-philosophers.jpg",
-    link: "https://github.com/C0X23/42-School-V2",
-    github: "https://github.com/C0X23/42-School-V2"
   }
 ];
 
@@ -54,6 +56,7 @@ export function Projects() {
   // Re-map with translations
   const projects = projectsFallback.map(p => ({
      ...p,
+     title: t(p.title),
      description: t(p.key)
   }));
 
@@ -159,7 +162,7 @@ function ProjectCard({ project, t }: { project: Project; t: ReturnType<typeof us
         <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
           {project.title}
         </h3>
-        <p className="text-stone-600 dark:text-stone-400 text-sm mb-6 line-clamp-3">
+        <p title={project.description} className="text-stone-600 dark:text-stone-400 text-sm mb-6 line-clamp-3">
           {project.description}
         </p>
 

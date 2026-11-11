@@ -1,7 +1,7 @@
 "use client";
 
 import * as Sentry from "@sentry/nextjs";
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 
 const translations = {
   fr: {
@@ -24,6 +24,9 @@ function getLocaleFromPath(): "fr" | "en" {
   return "fr";
 }
 
+const subscribeLocale = () => () => {};
+const getServerLocale = (): "fr" | "en" => "fr";
+
 export default function GlobalError({
   error,
   reset,
@@ -31,11 +34,7 @@ export default function GlobalError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  const [locale, setLocale] = useState<"fr" | "en">("fr");
-
-  useEffect(() => {
-    setLocale(getLocaleFromPath());
-  }, []);
+  const locale = useSyncExternalStore(subscribeLocale, getLocaleFromPath, getServerLocale);
 
   useEffect(() => {
     Sentry.captureException(error);

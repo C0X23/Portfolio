@@ -2,14 +2,16 @@ import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
 
-export const alt = 'Corentin Megret - Développeur Full Stack';
+export const alt = 'Corentin Megret - Back-end Developer, Python & Django';
 export const size = {
   width: 1200,
   height: 630,
 };
 export const contentType = 'image/png';
 
-export default async function Image() {
+export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const isFrench = locale === "fr";
   return new ImageResponse(
     (
       <div
@@ -93,7 +95,7 @@ export default async function Image() {
               marginBottom: 40,
             }}
           >
-            Développeur Full Stack
+            {isFrench ? "Développeur back-end" : "Back-end Developer"}
           </div>
           
           {/* Tech tags */}
@@ -103,7 +105,7 @@ export default async function Image() {
               gap: 16,
             }}
           >
-            {['React', 'Next.js', 'TypeScript', 'Python', 'C/C++'].map((tech) => (
+            {['Python', 'Django', 'PostgreSQL', 'Docker', 'Linux'].map((tech) => (
               <div
                 key={tech}
                 style={{
@@ -134,9 +136,9 @@ export default async function Image() {
             fontSize: 16,
           }}
         >
-          <span>2026</span>
+          <span>Python / Django</span>
           <span>•</span>
-          <span>Available for hire</span>
+          <span>{isFrench ? "depuis mars 2024" : "since March 2024"}</span>
         </div>
       </div>
     ),

@@ -1,8 +1,8 @@
 {
   "Hero": {
-    "subtitle": "CORENTIN M.",
-    "title": "Ingénieur Frontend avec <br /> Expérience Full-Stack & DevOps",
-    "description": "Je construis des applications web responsives prêtes pour la production, et contribue sur le frontend, le backend, les déploiements Docker et les pipelines CI/CD.",
+    "subtitle": "CORENTIN MEGRET",
+    "title": "Développeur back-end <br /> Python & Django",
+    "description": "Je conçois, teste et mets en production des applications métier, des API sécurisées et des automatisations, au plus près des produits et de leur traçabilité.",
     "cta": "Voir mes projets"
   },
   "Navigation": {
@@ -14,76 +14,101 @@
   },
   "About": {
     "title": "À Propos de moi",
-    "description1": "Ingénieur logiciel full-stack avec une expérience de production concrète, je construis des applications web de l'interface au déploiement, avec un fort accent sur l'intégration frontend, les APIs, la performance et l'automatisation.",
-    "description2": "Mon travail couvre les interfaces Vue.js & Django, l'optimisation PostgreSQL & Redis, la conteneurisation Docker et les pipelines CI/CD avec GitHub Actions. Mon background en programmation système C/C++ (École 42) me donne une base solide en algorithmique, mémoire et performance.",
-    "yearsEx": "Années d'Exp.",
-    "repos": "Repos GitHub"
+    "description1": "Développeur Python/Django depuis mars 2024, je travaille sur des logiciels métier reliés à des opérations concrètes : service après-vente, traçabilité des produits, synchronisation de données et intégrations avec des services tiers.",
+    "description2": "Chez Arcom, j’ai conçu et développé une plateforme SAV utilisée par une douzaine de personnes. En parallèle, je pilote l’ERP interne d’Arven Distribution, en développement. Mon cursus à 42 Lausanne m’a apporté une base solide en C/C++, Unix, réseaux et programmation système.",
+    "yearsEx": "Python/Django depuis mars",
+    "repos": "Lausanne · C/C++ & Unix",
+    "yearsValue": "2024",
+    "reposValue": "42"
   },
   "Timeline": {
     "title": "Mon Parcours",
     "subtitle": "De la formation intensive à la pratique professionnelle.",
     "formation_title": "Formation",
     "experience_title": "Expérience",
-    "bts_title": "BTS SNIR",
-    "bts_desc": "Brevet de Technicien Supérieur Systèmes Numériques - Option Informatique et Réseaux. Architecture réseau, programmation système et embarquée.",
+    "bts_title": "BTS Systèmes Numériques, option A : Informatique et réseaux",
+    "bts_desc": "Lycée Les Eucalyptus, Nice. Diplôme national de niveau bac+2, en informatique et réseaux.",
     "piscine_title": "Piscine 42",
     "piscine_desc": "Sélection intensive de 4 semaines. Introduction au langage C, Shell et aux concepts fondamentaux de la programmation.",
-    "school_title": "École 42 - Cursus Common Core",
-    "school_desc": "Apprentissage intensif du C/C++ et de l'architecture système. Réalisation de projets complexes : Minishell (Bash), Cub3D (Moteur graphique), Philosophers (Concurrence).",
-    "arcom_title": "Développeur Full Stack - Arcom",
-    "arcom_desc": "Développement et maintenance d'une solution complète de gestion SAV. Optimisation des flux logistiques, automatisation des processus et création d'interfaces administratives intuitives.",
-    "arcom_year": "2024 - Présent"
+    "school_title": "42 Lausanne - Formation en informatique par projets",
+    "school_desc": "Deux ans de cursus en C/C++, Unix, réseaux, algorithmique et Docker. Projets : Minishell, Webserv et Inception.",
+    "arcom_title": "Développeur full stack - Arcom",
+    "arcom_desc": "Conception et développement de la plateforme SAV en production : Django, PostgreSQL, Redis, API sécurisées et intégrations SOAP/SFTP/n8n. Import nocturne de plus de cinq ans de ventes, environ 620 tests et CI GitHub Actions. PWA de scan hors ligne en test. Temps partiel pendant 42, puis temps plein.",
+    "arcom_year": "Mars 2024 - aujourd’hui",
+    "school_year": "Sept. 2023 - juin 2025",
+    "arven_title": "Fondateur et développeur - Arven Distribution",
+    "arven_desc": "Conception et pilotage d’un ERP interne en développement. Socle OIDC avec double authentification, permissions par rôle et journal d’audit. Environ 1 350 tests et 99,97 % de couverture back-end. Intégration Amazon SP-API en cours.",
+    "arven_year": "Juin 2026 - aujourd’hui",
+    "networks": "Réseaux",
+    "algorithms": "Algorithmique"
   },
   "Projects": {
-    "title": "Projets Récents",
-    "subtitle": "Des applications web en production aux défis d'ingénierie — chaque projet reflète une ownership complète, une architecture propre et un déploiement réel.",
-    "arcom_desc": "Développement full-stack et ownership long terme d'une plateforme de gestion SAV en production. Backend Django REST, frontend Vue.js, PostgreSQL, conteneurisation Docker et pipeline CI/CD GitHub Actions. Automatisation des processus et interfaces d'administration avec gestion des rôles.",
-    "portfolio_desc": "Portfolio personnel construit avec Next.js 15, TypeScript, Tailwind CSS et Framer Motion. Dark mode, i18n (FR/EN), smooth scroll, optimisation SEO et déploiement en production sur Vercel.",
-    "minishell_desc": "Réimplémentation fidèle d'un Shell Unix (Bash). Gestion avancée des processus, redirections, pipes et signaux.",
+    "title": "Projets",
+    "subtitle": "Applications métier, intégrations et programmation système. Les projets professionnels restent privés ; leur contexte et leur état d’avancement sont précisés.",
+    "arcom_desc": "Plateforme SAV en production ; PWA de scan hors ligne en test. Code privé. Django, PostgreSQL et Redis.",
+    "portfolio_desc": "Ce site personnel : Next.js 16, TypeScript, Tailwind CSS et Framer Motion. Français/anglais, thèmes clair et sombre, métadonnées localisées et déploiement sur Vercel.",
+    "minishell_desc": "Projet 42 Lausanne en C : réimplémentation d’un shell Unix avec pipelines, redirections, commandes intégrées, variables d’environnement et gestion des signaux.",
     "cub3d_desc": "Moteur de rendu 3D style Wolfenstein 3D créé from scratch en C. Gestion de la physique, textures et raycasting.",
     "philosophers_desc": "Simulation du problème des philosophes. Gestion complexe de la concurrence, threads, mutex et prévention des deadlocks.",
     "demo": "Demo",
-    "code": "Code"
+    "code": "Code",
+    "arcom_title": "Plateforme SAV - Arcom",
+    "arven_title": "ERP interne - Arven Distribution",
+    "arven_desc": "ERP interne en développement, code privé. Python/Django/DRF, PostgreSQL et Celery ; intégration Amazon SP-API en cours.",
+    "portfolio_title": "Portfolio - cmegret.dev",
+    "minishell_title": "Minishell",
+    "cub3d_title": "Cub3D (Raycasting)",
+    "philosophers_title": "Philosophers",
+    "private": "Code privé",
+    "details": "Lire la description complète",
+    "close_details": "Réduire la description",
+    "arven_image_alt": "Arven Distribution, ERP interne en développement"
   },
   "Skills": {
     "title": "Compétences Techniques",
     "cpp": "C / C++ / Algorithmique",
-    "python": "Python / Django",
+    "python": "Python / Django / Django REST Framework",
     "linux": "Linux / Unix / Bash",
-    "git": "Git / GitHub / CI/CD",
-    "docker": "Docker / DevOps",
+    "git": "Git / GitHub Actions / pytest",
+    "docker": "Docker / Docker Compose / nginx",
     "web": "HTML / CSS / JavaScript",
-    "vue": "Vue.js / React / Framer Motion",
-    "nextjs": "Next.js / Vercel",
+    "vue": "React / PWA",
+    "nextjs": "Next.js / Vercel (portfolio)",
     "typescript": "TypeScript / Tailwind CSS",
-    "sql": "SQL / PostgreSQL / Redis"
+    "sql": "PostgreSQL / SQL / Redis",
+    "professional": "Pratique",
+    "foundation": "42",
+    "basics": "Notions",
+    "personal": "Portfolio",
+    "context_note": "Les libellés précisent le contexte de pratique. Les barres restent décoratives et ne représentent pas un pourcentage de maîtrise."
   },
   "Contact": {
-    "title": "Travaillons Ensemble",
-    "description": "Ouvert aux opportunités remote en frontend, full-stack ou avec une dimension DevOps. Vous avez un poste, une question ou simplement envie d'échanger — je serais ravi d'en discuter.",
-    "location": "Suisse / France",
+    "title": "Échangeons",
+    "description": "Une question sur un projet, une intégration ou une application métier ? Vous pouvez me contacter par e-mail ou via ce formulaire.",
+    "location": "France · Genève / Lausanne",
     "success_title": "Message envoyé !",
     "success_msg": "Merci de m'avoir contacté. Je vous répondrai dans les plus brefs délais.",
     "sending": "Envoi en cours...",
     "send": "Envoyer le message",
     "placeholders": {
-        "lastName": "Nom",
-        "firstName": "Prénom",
-        "email": "Email",
-        "subject": "Sujet",
-        "message": "Votre message..."
+      "lastName": "Nom",
+      "firstName": "Prénom",
+      "email": "Email",
+      "subject": "Sujet",
+      "message": "Votre message..."
     },
     "errors": {
-        "firstName_min": "Le prénom doit contenir au moins 2 caractères",
-        "lastName_min": "Le nom doit contenir au moins 2 caractères",
-        "email_invalid": "Adresse email invalide",
-        "subject_min": "Le sujet doit contenir au moins 5 caractères",
-        "message_min": "Le message doit contenir au moins 10 caractères",
-        "generic": "Veuillez corriger les erreurs dans le formulaire."
-    }
+      "firstName_min": "Le prénom doit contenir au moins 2 caractères",
+      "lastName_min": "Le nom doit contenir au moins 2 caractères",
+      "email_invalid": "Adresse email invalide",
+      "subject_min": "Le sujet doit contenir au moins 5 caractères",
+      "message_min": "Le message doit contenir au moins 10 caractères",
+      "generic": "Veuillez corriger les erreurs dans le formulaire."
+    },
+    "languages": "Français natif · Anglais professionnel (B2-C1)"
   },
   "Footer": {
-    "role": "Ingénieur Frontend & Développeur Full-Stack.",
+    "role": "Développeur back-end Python / Django.",
     "rights": "Tous droits réservés.",
     "built_with": "Créé avec"
   },
@@ -114,15 +139,15 @@
     "coffee_dismiss": "Cliquer pour fermer",
     "hacker_authenticating": "Authentification...",
     "hacker_access_granted": "Accès accordé.",
-    "hacker_init": "Initialisation de la séquence de recrutement...",
-    "hacker_skills_verified": "[OK] Compétences vérifiées",
-    "hacker_motivation": "[OK] Motivation : 100%",
-    "hacker_coffee_dep": "[OK] Dépendance café : Maximum",
-    "hacker_available": "[OK] Disponible : Oui",
-    "hacker_success": "RECRUTEMENT RÉUSSI !",
-    "whoami_groups": "vue,django,docker,42-survivor,prod-depuis-2024",
-    "whoami_description": "Construit des apps de l'UI au pipeline CI/CD. Vit sous Docker, parle PostgreSQL couramment.",
-    "whoami_uptime": "en poste @arcom depuis 2024 · cafés consommés: incalculable",
+    "hacker_init": "Initialisation du parcours technique…",
+    "hacker_skills_verified": "[OK] Python / Django : applications métier",
+    "hacker_motivation": "[OK] API et intégrations",
+    "hacker_coffee_dep": "[OK] Tests et traçabilité",
+    "hacker_available": "[OK] Projets et documentation",
+    "hacker_success": "PROFIL CHARGÉ",
+    "whoami_groups": "python,django,postgresql,unix,42-lausanne",
+    "whoami_description": "Conçoit des applications métier, des API et des automatisations. Python/Django, PostgreSQL et tests.",
+    "whoami_uptime": "Python/Django depuis mars 2024 · Arcom et Arven Distribution",
     "whoami_close": "cliquer ou [esc] pour fermer",
     "credits_powered_by": "Un portfolio propulsé par",
     "credits_made_with": "Développé avec passion",
@@ -148,7 +173,7 @@
     "xp_login_user": "Corentin"
   },
   "Metadata": {
-    "title": "Corentin Megret | Ingénieur Frontend — Vue.js, React & DevOps",
-    "description": "Ingénieur Frontend avec expérience Full-Stack & DevOps. Vue.js, React, TypeScript, Python/Django, Docker, CI/CD, PostgreSQL et applications web en production."
+    "title": "Corentin Megret | Développeur back-end Python & Django",
+    "description": "Développeur Python/Django depuis mars 2024. Applications métier, API sécurisées, PostgreSQL, automatisations et tests. Projets Arcom, Arven Distribution et 42 Lausanne."
   }
 }

@@ -1,22 +1,22 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useSyncExternalStore } from "react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "./mode-toggle";
 import { LangToggle } from "./lang-toggle";
 import { useTranslations } from "next-intl";
 import { Command } from "lucide-react";
 
+const subscribePlatform = () => () => {};
+const getPlatform = () => navigator.platform.toUpperCase().includes("MAC");
+const getServerPlatform = () => false;
+
 export function Navigation() {
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isMac, setIsMac] = useState(false);
+  const isMac = useSyncExternalStore(subscribePlatform, getPlatform, getServerPlatform);
   const lastScrollY = useRef(0);
   const t = useTranslations("Navigation");
-
-  useEffect(() => {
-    setIsMac(navigator.platform.toUpperCase().indexOf("MAC") >= 0);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {

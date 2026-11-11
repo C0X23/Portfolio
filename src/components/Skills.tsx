@@ -4,16 +4,16 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 const skills = [
-  { key: "web", level: 90 },
-  { key: "typescript", level: 85 },
-  { key: "vue", level: 85 },
-  { key: "nextjs", level: 80 },
-  { key: "git", level: 90 },
-  { key: "docker", level: 80 },
-  { key: "python", level: 95 },
-  { key: "sql", level: 80 },
-  { key: "linux", level: 85 },
-  { key: "cpp", level: 95 },
+  { key: "python", level: 95, context: "professional" },
+  { key: "sql", level: 80, context: "professional" },
+  { key: "git", level: 90, context: "professional" },
+  { key: "linux", level: 85, context: "professional" },
+  { key: "docker", level: 80, context: "professional" },
+  { key: "cpp", level: 95, context: "foundation" },
+  { key: "web", level: 90, context: "basics" },
+  { key: "typescript", level: 85, context: "basics" },
+  { key: "vue", level: 85, context: "basics" },
+  { key: "nextjs", level: 80, context: "personal" },
 ];
 
 export function Skills() {
@@ -31,6 +31,7 @@ export function Skills() {
           <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-stone-900 to-stone-500 dark:from-stone-100 dark:to-stone-400 mb-4">
             {t("title")}
           </h2>
+          <p className="text-stone-600 dark:text-stone-400 max-w-xl mx-auto">{t("context_note")}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -45,9 +46,9 @@ export function Skills() {
             >
               <div className="flex justify-between items-end mb-2">
                 <span className="text-lg font-medium text-stone-800 dark:text-stone-200 transition-colors duration-300">{t(skill.key)}</span>
-                <span className="text-sm text-stone-500 dark:text-stone-400 transition-colors duration-300">{skill.level}%</span>
+                <span className="text-sm text-stone-500 dark:text-stone-400 transition-colors duration-300">{t(skill.context)}</span>
               </div>
-              <div className="h-2 w-full bg-stone-200 dark:bg-stone-800 rounded-full overflow-hidden transition-colors duration-300">
+              <div aria-hidden="true" className="h-2 w-full bg-stone-200 dark:bg-stone-800 rounded-full overflow-hidden transition-colors duration-300">
                 <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: `${skill.level}%` }}

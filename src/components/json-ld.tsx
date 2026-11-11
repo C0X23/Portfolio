@@ -6,32 +6,33 @@ export function JsonLd({ locale }: { locale: string }) {
     name: "Corentin Megret",
     url: "https://cmegret.dev",
     image: ogImageUrl,
-    jobTitle: "Développeur Full Stack",
-    worksFor: {
-      "@type": "Organization",
-      name: "Freelance",
-    },
+    jobTitle: locale === "fr" ? "Développeur back-end Python / Django" : "Back-end Developer, Python / Django",
+    worksFor: [
+      { "@type": "Organization", name: "Arcom" },
+      { "@type": "Organization", name: "Arven Distribution" },
+    ],
     sameAs: [
       "https://github.com/C0X23",
-      "https://linkedin.com/in/corentin-music",
+      "https://www.linkedin.com/in/corentin-megret-2b298a23b/",
     ],
     knowsAbout: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "JavaScript",
       "Python",
+      "Django",
+      "Django REST Framework",
+      "PostgreSQL",
+      "REST APIs",
+      "pytest",
+      "Redis",
+      "Celery",
       "C",
       "C++",
-      "Node.js",
-      "Tailwind CSS",
       "Git",
       "Linux",
       "Docker",
     ],
     alumniOf: {
       "@type": "EducationalOrganization",
-      name: "42",
+      name: "42 Lausanne",
     },
   };
 
@@ -40,7 +41,9 @@ export function JsonLd({ locale }: { locale: string }) {
     "@type": "WebSite",
     name: "Corentin Megret - Portfolio",
     url: "https://cmegret.dev",
-    description: "Portfolio de Corentin Megret, développeur Full Stack spécialisé dans le développement web et système.",
+    description: locale === "fr"
+      ? "Portfolio de Corentin Megret, développeur back-end Python / Django. Applications métier, API et automatisations."
+      : "Corentin Megret, back-end Python / Django developer. Business applications, APIs and automations.",
     author: {
       "@type": "Person",
       name: "Corentin Megret",

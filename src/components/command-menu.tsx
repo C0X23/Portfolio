@@ -10,7 +10,7 @@ import { Laptop, Moon, Sun, User, Briefcase, FileText, Code, Mail, Search, Coffe
 
 // Easter Eggs Functions
 const easterEggs = {
-  // Mode Hacker - sudo hire me
+  // Mode Hacker - show profile
   hackerMode: (t: (key: string) => string) => {
     const overlay = document.createElement("div");
     overlay.id = "hacker-overlay";
@@ -22,21 +22,21 @@ const easterEggs = {
     document.body.appendChild(overlay);
     
     const lines = [
-      { text: "$ sudo hire me", color: "#a855f7" },
-      { text: "[sudo] password for recruiter: ********", color: "#22c55e" },
+      { text: "$ show profile", color: "#a855f7" },
+      { text: "[profile] corentin-megret", color: "#22c55e" },
       { text: t("hacker_authenticating"), color: "#22c55e" },
       { text: "", color: "" },
       { text: t("hacker_access_granted"), color: "#4ade80" },
       { text: "", color: "" },
       { text: "$ cat /home/corentin/skills.txt", color: "#a855f7" },
       { text: "", color: "" },
-      { text: "  C/C++        [####################] 95%", color: "#22c55e" },
-      { text: "  Python       [####################] 95%", color: "#22c55e" },
-      { text: "  React        [##################--] 85%", color: "#22c55e" },
-      { text: "  TypeScript   [##################--] 85%", color: "#22c55e" },
-      { text: "  Next.js      [################----] 80%", color: "#22c55e" },
+      { text: "  Python / Django / Django REST Framework", color: "#22c55e" },
+      { text: "  PostgreSQL / SQL / Redis", color: "#22c55e" },
+      { text: "  pytest / GitHub Actions / Git", color: "#22c55e" },
+      { text: "  Docker / Linux / Celery", color: "#22c55e" },
+      { text: "  C / C++ / Unix (42 Lausanne)", color: "#22c55e" },
       { text: "", color: "" },
-      { text: "$ ./hire_corentin.sh", color: "#a855f7" },
+      { text: "$ ./profile_corentin.sh", color: "#a855f7" },
       { text: "", color: "" },
       { text: t("hacker_init"), color: "#22c55e" },
       { text: t("hacker_skills_verified"), color: "#4ade80" },
@@ -1028,7 +1028,7 @@ export function CommandMenu() {
         <Command.Group heading="Easter Eggs" className="text-stone-500 dark:text-stone-400 text-xs font-medium px-2 py-1.5 mb-1 mt-2 select-none">
           <CommandItem onSelect={() => runCommand(() => easterEggs.hackerMode(t))}>
             <Terminal className="mr-2 h-4 w-4" />
-            <span>sudo hire me</span>
+            <span>show profile</span>
           </CommandItem>
           <CommandItem onSelect={() => runCommand(() => easterEggs.coffee(t))}>
             <Coffee className="mr-2 h-4 w-4" />

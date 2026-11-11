@@ -21,7 +21,7 @@ export function Timeline() {
       title: t("bts_title"),
       description: t("bts_desc"),
       icon: <GraduationCap className="w-5 h-5" />,
-      tech: ["C++", "HTML", "CSS", "JavaScript", "Réseaux", "Linux"]
+      tech: ["C++", "HTML", "CSS", "JavaScript", t("networks"), "Linux"]
     },
     {
       year: "2023",
@@ -31,11 +31,11 @@ export function Timeline() {
       tech: ["C", "Shell", "Git"]
     },
     {
-      year: "2023 - 2025",
+      year: t("school_year"),
       title: t("school_title"),
       description: t("school_desc"),
       icon: <Code className="w-5 h-5" />,
-      tech: ["C", "C++", "Algorithmie", "Unix"]
+      tech: ["C", "C++", t("algorithms"), "Unix"]
     },
   ];
 
@@ -45,8 +45,15 @@ export function Timeline() {
       title: t("arcom_title"),
       description: t("arcom_desc"),
       icon: <Briefcase className="w-5 h-5" />,
-      tech: ["Python", "Django", "SQL", "Docker"]
-    }
+      tech: ["Python", "Django", "PostgreSQL", "Redis"]
+    },
+    {
+      year: t("arven_year"),
+      title: t("arven_title"),
+      description: t("arven_desc"),
+      icon: <Briefcase className="w-5 h-5" />,
+      tech: ["Python", "Django", "DRF", "PostgreSQL", "Celery", "Docker Compose"]
+    },
   ];
 
   return (

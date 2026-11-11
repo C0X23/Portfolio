@@ -1,8 +1,8 @@
 {
   "Hero": {
-    "subtitle": "CORENTIN M.",
-    "title": "Frontend Engineer with <br /> Full-Stack & DevOps Experience",
-    "description": "I build responsive, production-ready web applications and contribute across frontend, backend, Docker-based deployments, and CI/CD workflows.",
+    "subtitle": "CORENTIN MEGRET",
+    "title": "Back-end Developer <br /> Python & Django",
+    "description": "I design, test and ship business applications, secured APIs and automations, with a focus on physical products and traceability.",
     "cta": "View my projects"
   },
   "Navigation": {
@@ -14,76 +14,101 @@
   },
   "About": {
     "title": "About Me",
-    "description1": "Full-stack software engineer with hands-on production experience, building web applications from interface to deployment, with a strong focus on frontend integration, APIs, performance, and automation.",
-    "description2": "My work spans Vue.js & Django interfaces, PostgreSQL & Redis optimization, Docker containerization, and GitHub Actions CI/CD. My background in C/C++ system programming (42 School) gives me a proven foundation in algorithms, memory, and performance.",
-    "yearsEx": "Years Exp.",
-    "repos": "GitHub Repos"
+    "description1": "A Python/Django developer since March 2024, I work on business software connected to real operations: after-sales service, product traceability, data synchronisation and third-party integrations.",
+    "description2": "At Arcom, I designed and developed an after-sales platform used by about a dozen people. In parallel, I lead the development of Arven Distribution’s internal ERP. My time at 42 Lausanne gave me a solid foundation in C/C++, Unix, networks and systems programming.",
+    "yearsEx": "Python/Django since March",
+    "repos": "Lausanne · C/C++ & Unix",
+    "yearsValue": "2024",
+    "reposValue": "42"
   },
   "Timeline": {
     "title": "My Journey",
     "subtitle": "From intensive training to professional practice.",
     "formation_title": "Education",
     "experience_title": "Experience",
-    "bts_title": "BTS SNIR",
-    "bts_desc": "Higher Technician Certificate in Digital Systems - Computing and Networks Option. Network architecture, system, and embedded programming.",
+    "bts_title": "BTS Systèmes Numériques, option A : Informatique et réseaux",
+    "bts_desc": "Lycée Les Eucalyptus, Nice. French two-year technical degree in computer science and networks (Bac+2 / EQF level 5).",
     "piscine_title": "42 Piscine",
     "piscine_desc": "Intensive 4-week selection. Introduction to C, Shell, and fundamental programming concepts.",
-    "school_title": "42 School - Common Core",
-    "school_desc": "Intensive learning of C/C++ and system architecture. Realization of complex projects: Minishell (Bash), Cub3D (Graphics engine), Philosophers (Concurrency).",
-    "arcom_title": "Full Stack Developer - Arcom",
-    "arcom_desc": "Development and maintenance of a complete After-Sales Service management solution. Optimization of logistic flows, process automation, and creation of intuitive administrative interfaces.",
-    "arcom_year": "2024 - Present"
+    "school_title": "42 Lausanne - Project-based programming programme",
+    "school_desc": "Two-year programme in C/C++, Unix, networks, algorithms and Docker. Projects: Minishell, Webserv and Inception.",
+    "arcom_title": "Full-stack Developer - Arcom",
+    "arcom_desc": "Designed and developed the production after-sales platform: Django, PostgreSQL, Redis, secured APIs and SOAP/SFTP/n8n integrations. Nightly import of more than five years of sales, around 620 tests and GitHub Actions CI. Offline barcode-scanning PWA in testing. Part-time during 42, then full-time.",
+    "arcom_year": "March 2024 - present",
+    "school_year": "Sept. 2023 - June 2025",
+    "arven_title": "Founder and Developer - Arven Distribution",
+    "arven_desc": "Designed and led an internal ERP currently in development. OIDC with two-factor authentication, role-based permissions and an audit log. Around 1,350 tests and 99.97% back-end coverage. Amazon SP-API integration in progress.",
+    "arven_year": "June 2026 - present",
+    "networks": "Networks",
+    "algorithms": "Algorithms"
   },
   "Projects": {
-    "title": "Recent Projects",
-    "subtitle": "From production web applications to engineering challenges — each project reflects end-to-end ownership, clean architecture, and real-world deployment.",
-    "arcom_desc": "Full-stack development and long-term ownership of a production After-Sales management platform. Django REST backend, Vue.js frontend, PostgreSQL, Docker containerization, and GitHub Actions CI/CD pipeline. Process automation and role-based admin interfaces.",
-    "portfolio_desc": "Personal portfolio built with Next.js 15, TypeScript, Tailwind CSS and Framer Motion. Dark mode, i18n (EN/FR), smooth scroll, SEO optimization, and production deployment on Vercel.",
-    "minishell_desc": "Faithful reimplementation of a Unix Shell (Bash). Advanced process management, redirections, pipes, and signals.",
+    "title": "Projects",
+    "subtitle": "Business applications, integrations and systems programming. Professional codebases remain private; each project states its context and development status.",
+    "arcom_desc": "Production after-sales platform; offline scanning PWA in testing. Private codebase. Django, PostgreSQL and Redis.",
+    "portfolio_desc": "This personal site: Next.js 16, TypeScript, Tailwind CSS and Framer Motion. French/English, light and dark themes, localised metadata and deployment on Vercel.",
+    "minishell_desc": "42 Lausanne project in C: a Unix shell reimplementation with pipelines, redirections, builtins, environment variables and signal handling.",
     "cub3d_desc": "3D rendering engine style Wolfenstein 3D created from scratch in C. Physics management, textures, and raycasting.",
     "philosophers_desc": "Simulation of the dining philosophers problem. Complex management of concurrency, threads, mutexes, and deadlock prevention.",
     "demo": "Demo",
-    "code": "Code"
+    "code": "Code",
+    "arcom_title": "After-sales platform - Arcom",
+    "arven_title": "Internal ERP - Arven Distribution",
+    "arven_desc": "Internal ERP in development, private codebase. Python/Django/DRF, PostgreSQL and Celery; Amazon SP-API integration in progress.",
+    "portfolio_title": "Portfolio - cmegret.dev",
+    "minishell_title": "Minishell",
+    "cub3d_title": "Cub3D (Raycasting)",
+    "philosophers_title": "Philosophers",
+    "private": "Private code",
+    "details": "Read the full description",
+    "close_details": "Collapse description",
+    "arven_image_alt": "Arven Distribution, internal ERP in development"
   },
   "Skills": {
     "title": "Technical Skills",
     "cpp": "C / C++ / Algorithms",
-    "python": "Python / Django",
+    "python": "Python / Django / Django REST Framework",
     "linux": "Linux / Unix / Bash",
-    "git": "Git / GitHub / CI/CD",
-    "docker": "Docker / DevOps",
+    "git": "Git / GitHub Actions / pytest",
+    "docker": "Docker / Docker Compose / nginx",
     "web": "HTML / CSS / JavaScript",
-    "vue": "Vue.js / React / Framer Motion",
-    "nextjs": "Next.js / Vercel",
+    "vue": "React / PWA",
+    "nextjs": "Next.js / Vercel (portfolio)",
     "typescript": "TypeScript / Tailwind CSS",
-    "sql": "SQL / PostgreSQL / Redis"
+    "sql": "PostgreSQL / SQL / Redis",
+    "professional": "Practice",
+    "foundation": "42",
+    "basics": "Basics",
+    "personal": "Portfolio",
+    "context_note": "Labels describe the context of use. The bars are decorative and do not represent a proficiency percentage."
   },
   "Contact": {
-    "title": "Let's Work Together",
-    "description": "Open to frontend, full-stack, or DevOps-leaning remote opportunities. Whether you have a role, a question, or just want to connect — I'd love to hear from you.",
-    "location": "Switzerland / France",
+    "title": "Get in touch",
+    "description": "A question about a project, an integration or a business application? Contact me by email or through this form.",
+    "location": "France · Geneva / Lausanne",
     "success_title": "Message sent!",
     "success_msg": "Thank you for contacting me. I will get back to you as soon as possible.",
     "sending": "Sending...",
     "send": "Send Message",
     "placeholders": {
-        "lastName": "Last Name",
-        "firstName": "First Name",
-        "email": "Email",
-        "subject": "Subject",
-        "message": "Your message..."
+      "lastName": "Last Name",
+      "firstName": "First Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Your message..."
     },
     "errors": {
-        "firstName_min": "First name must be at least 2 characters",
-        "lastName_min": "Last name must be at least 2 characters",
-        "email_invalid": "Invalid email address",
-        "subject_min": "Subject must be at least 5 characters",
-        "message_min": "Message must be at least 10 characters",
-        "generic": "Please correct the errors in the form."
-    }
+      "firstName_min": "First name must be at least 2 characters",
+      "lastName_min": "Last name must be at least 2 characters",
+      "email_invalid": "Invalid email address",
+      "subject_min": "Subject must be at least 5 characters",
+      "message_min": "Message must be at least 10 characters",
+      "generic": "Please correct the errors in the form."
+    },
+    "languages": "French native · Professional English (B2-C1)"
   },
   "Footer": {
-    "role": "Frontend Engineer & Full-Stack Developer.",
+    "role": "Back-end Developer, Python / Django.",
     "rights": "All rights reserved.",
     "built_with": "Built with"
   },
@@ -114,15 +139,15 @@
     "coffee_dismiss": "Click to dismiss",
     "hacker_authenticating": "Authenticating...",
     "hacker_access_granted": "Access granted.",
-    "hacker_init": "Initializing hiring sequence...",
-    "hacker_skills_verified": "[OK] Skills verified",
-    "hacker_motivation": "[OK] Motivation: 100%",
-    "hacker_coffee_dep": "[OK] Coffee dependency: Maximum",
-    "hacker_available": "[OK] Available: Yes",
-    "hacker_success": "HIRE SUCCESSFUL!",
-    "whoami_groups": "vue,django,docker,42-survivor,prod-since-2024",
-    "whoami_description": "Builds apps from UI to CI/CD pipeline. Lives in Docker, speaks PostgreSQL fluently.",
-    "whoami_uptime": "@arcom since 2024 · coffees consumed: incalculable",
+    "hacker_init": "Initialising technical profile…",
+    "hacker_skills_verified": "[OK] Python / Django: business applications",
+    "hacker_motivation": "[OK] APIs and integrations",
+    "hacker_coffee_dep": "[OK] Tests and traceability",
+    "hacker_available": "[OK] Projects and documentation",
+    "hacker_success": "PROFILE LOADED",
+    "whoami_groups": "python,django,postgresql,unix,42-lausanne",
+    "whoami_description": "Builds business applications, APIs and automations. Python/Django, PostgreSQL and testing.",
+    "whoami_uptime": "Python/Django since March 2024 · Arcom and Arven Distribution",
     "whoami_close": "click or [esc] to close",
     "credits_powered_by": "A portfolio powered by",
     "credits_made_with": "Crafted with passion",
@@ -148,7 +173,7 @@
     "xp_login_user": "Corentin"
   },
   "Metadata": {
-    "title": "Corentin Megret | Frontend Engineer — Vue.js, React & DevOps",
-    "description": "Frontend Engineer with Full-Stack & DevOps experience. Vue.js, React, TypeScript, Python/Django, Docker, CI/CD, PostgreSQL, and production web applications."
+    "title": "Corentin Megret | Back-end Developer, Python & Django",
+    "description": "Python/Django developer since March 2024. Business applications, secured APIs, PostgreSQL, automations and testing. Projects at Arcom, Arven Distribution and 42 Lausanne."
   }
 }

@@ -41,11 +41,11 @@ export async function About() {
 
             <div className="grid grid-cols-2 gap-6 text-center md:text-left">
               <div>
-                <h4 className="text-4xl font-bold text-stone-900 dark:text-stone-100 mb-2">2+</h4>
+                <h4 className="text-4xl font-bold text-stone-900 dark:text-stone-100 mb-2">{t("yearsValue")}</h4>
                 <p className="text-sm text-stone-500 dark:text-stone-400 uppercase tracking-widest">{t("yearsEx")}</p>
               </div>
               <div>
-                <h4 className="text-4xl font-bold text-stone-900 dark:text-stone-100 mb-2">30+</h4>
+                <h4 className="text-4xl font-bold text-stone-900 dark:text-stone-100 mb-2">{t("reposValue")}</h4>
                 <p className="text-sm text-stone-500 dark:text-stone-400 uppercase tracking-widest">{t("repos")}</p>
               </div>
             </div>
