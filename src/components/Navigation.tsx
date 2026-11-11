@@ -5,18 +5,15 @@ import { cn } from "@/lib/utils";
 import { ModeToggle } from "./mode-toggle";
 import { LangToggle } from "./lang-toggle";
 import { useTranslations } from "next-intl";
-import { Terminal } from "lucide-react";
-import { requestCommandMenu } from "@/lib/command-menu-events";
 
 const subscribePlatform = () => () => {};
-const getPlatform = () => navigator.platform.toUpperCase().includes("MAC") ? "mac" : "other";
-const getServerPlatform = () => "server";
+const getPlatform = () => navigator.platform.toUpperCase().includes("MAC");
+const getServerPlatform = () => false;
 
 export function Navigation() {
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const platform = useSyncExternalStore(subscribePlatform, getPlatform, getServerPlatform);
-  const isMac = platform === "mac";
+  const isMac = useSyncExternalStore(subscribePlatform, getPlatform, getServerPlatform);
   const lastScrollY = useRef(0);
   const t = useTranslations("Navigation");
 
@@ -37,7 +34,7 @@ export function Navigation() {
   }, []);
 
   const openCommandMenu = () => {
-    requestCommandMenu();
+    document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true, ctrlKey: true }));
   };
 
   return (
@@ -70,17 +67,12 @@ export function Navigation() {
           <div className="relative z-50 flex items-center gap-2">
             {/* Command Palette Hint */}
             <button
-              type="button"
               onClick={openCommandMenu}
-              disabled={platform === "server"}
-              aria-busy={platform === "server"}
-              className="flex md:hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-700 dark:hover:text-stone-300 transition-colors cursor-pointer"
-              aria-label={t("open_command_menu")}
-              aria-keyshortcuts={isMac ? "Meta+K" : "Control+K"}
+              className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-700 dark:hover:text-stone-300 transition-colors cursor-pointer"
+              aria-label="Open command menu"
             >
-              <Terminal className="h-4 w-4 lg:hidden" aria-hidden="true" />
-              <span className="hidden lg:inline font-medium" aria-hidden="true">{isMac ? "⌘" : "Ctrl"}</span>
-              <span className="hidden lg:inline font-medium" aria-hidden="true">K</span>
+              <span className="font-medium">{isMac ? "⌘" : "Ctrl"}</span>
+              <span className="font-medium">K</span>
             </button>
             <ModeToggle />
             <LangToggle />

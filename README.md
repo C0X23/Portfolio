@@ -26,7 +26,6 @@ Ne jamais versionner les fichiers d’environnement contenant des secrets.
 
 ```sh
 npm run lint
-npm test
 npx tsc --noEmit
 npm run build
 npm run start
@@ -46,14 +45,6 @@ Le design existant est conservé : couleurs, typographie, mise en page, carrouse
 Les compétences distinguent pratique professionnelle, formation, notions et projet personnel. Les barres historiques sont décoratives ; elles ne sont pas des pourcentages de maîtrise.
 
 Le logo Arven provient des ressources officielles de la marque. Les documents de candidature ciblés et les coordonnées privées ne sont pas publiés sur le site.
-
-## Easter eggs
-
-Ouvrir le menu avec **⌘ K** sur Mac, **Ctrl K** ailleurs, ou le bouton Terminal sur téléphone. Chercher `coffee`, `xp`, `retro`, `hello`, `flip`, `thanos`, `credits`, `whoami` ou `show profile`. Le code Konami ouvre aussi le bureau XP hors des champs de saisie.
-
-Les neuf scènes sont interactives, traduites et isolées de la page. **Échap** ou le bouton de fermeture permettent de revenir au portfolio. Les sons sont activables et s’arrêtent à la fermeture ; les animations respectent la préférence de mouvement réduit. Les commandes du terminal sont simulées et ne s’exécutent jamais sur un serveur.
-
-`npm test` couvre le résolveur du terminal, le code secret et l’arrêt des sons, y compris les lectures encore en attente.
 
 ## Publication
 
