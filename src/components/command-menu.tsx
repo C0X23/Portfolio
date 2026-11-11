@@ -7,14 +7,14 @@ import { useTheme } from "next-themes";
 import { useRouter, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { Laptop, Moon, Sun, User, Briefcase, FileText, Code, Mail, Search } from "lucide-react";
-import { OPEN_COMMAND_MENU_EVENT } from "@/lib/command-menu-events";
+import { OPEN_COMMAND_MENU_EVENT, getCommandMenuOpen, getServerCommandMenuOpen, setCommandMenuOpen as setOpen, subscribeCommandMenu } from "@/lib/command-menu-events";
 import { advanceKonami, type EasterEggId } from "@/lib/easter-eggs";
 import { EasterEggDialog, EGG_COMMANDS } from "./easter-egg-dialog";
 
 const groupClass = "text-stone-500 dark:text-stone-400 text-xs font-medium px-2 py-1.5 mb-1 mt-2 select-none";
 
 export function CommandMenu() {
-  const [open, setOpen] = React.useState(false);
+  const open = React.useSyncExternalStore(subscribeCommandMenu, getCommandMenuOpen, getServerCommandMenuOpen);
   const [search, setSearch] = React.useState("");
   const [activeEgg, setActiveEgg] = React.useState<EasterEggId | null>(null);
   const returnFocus = React.useRef<HTMLElement | null>(null);

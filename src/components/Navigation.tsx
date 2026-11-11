@@ -6,16 +6,17 @@ import { ModeToggle } from "./mode-toggle";
 import { LangToggle } from "./lang-toggle";
 import { useTranslations } from "next-intl";
 import { Terminal } from "lucide-react";
-import { OPEN_COMMAND_MENU_EVENT } from "@/lib/command-menu-events";
+import { requestCommandMenu } from "@/lib/command-menu-events";
 
 const subscribePlatform = () => () => {};
-const getPlatform = () => navigator.platform.toUpperCase().includes("MAC");
-const getServerPlatform = () => false;
+const getPlatform = () => navigator.platform.toUpperCase().includes("MAC") ? "mac" : "other";
+const getServerPlatform = () => "server";
 
 export function Navigation() {
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const isMac = useSyncExternalStore(subscribePlatform, getPlatform, getServerPlatform);
+  const platform = useSyncExternalStore(subscribePlatform, getPlatform, getServerPlatform);
+  const isMac = platform === "mac";
   const lastScrollY = useRef(0);
   const t = useTranslations("Navigation");
 
@@ -36,7 +37,7 @@ export function Navigation() {
   }, []);
 
   const openCommandMenu = () => {
-    document.dispatchEvent(new CustomEvent(OPEN_COMMAND_MENU_EVENT));
+    requestCommandMenu();
   };
 
   return (
@@ -71,6 +72,8 @@ export function Navigation() {
             <button
               type="button"
               onClick={openCommandMenu}
+              disabled={platform === "server"}
+              aria-busy={platform === "server"}
               className="flex md:hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-700 dark:hover:text-stone-300 transition-colors cursor-pointer"
               aria-label={t("open_command_menu")}
               aria-keyshortcuts={isMac ? "Meta+K" : "Control+K"}
